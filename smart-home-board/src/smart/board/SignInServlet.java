@@ -47,13 +47,14 @@ public class SignInServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		//System.out.println("User logged in " + ipAddress + " at " + new Date().toString());
+		System.out.println("User logged in " + ipAddress + " at " + new Date().toString());
 		
 		HttpSession session = request.getSession();
 		
 		session.setAttribute("userName", username);
+		session.setAttribute("pssword", password);
 		
-		String Website ="http://localhost:8080/smart-home-board/Homepage.jsp";
+		String Website ="http://localhost:8080/smart-home-board/Home-page.jsp";
 		response.sendRedirect(Website);
 		
 	}
