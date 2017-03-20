@@ -40,7 +40,7 @@ public class LogOutServlet extends HttpServlet {
 		
 		
 		request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+        response.sendRedirect(request.getContextPath() + "/Home-page.jsp");
 		
 		
 //		HttpSession session = request.getSession();

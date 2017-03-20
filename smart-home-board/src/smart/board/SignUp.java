@@ -36,6 +36,7 @@ public class SignUp extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	/*	
 		
 		String ipAddress = request.getRemoteAddr();
 		
@@ -45,6 +46,7 @@ public class SignUp extends HttpServlet {
 		String email = request.getParameter("email");
 		String country = request.getParameter("country");
 		
+	*/
 	}
 
 }

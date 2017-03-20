@@ -13,7 +13,7 @@
 		}
 		//main countdown function
 		function countdown_proc() {
-			eventDate = 15000 / 1000;
+			eventDate = (12/4/2018) / 1000;
 			currentDate = Math.floor($.now() / 1000);
 			if(eventDate <= currentDate) {
 				callback.call(this);
