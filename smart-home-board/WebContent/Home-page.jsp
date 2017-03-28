@@ -50,14 +50,15 @@
           </ul>
         </li>
           </ul>
-          <form name="loginForm" method="POST" action="SignInServlet" class="navbar-form navbar-right">
+          <form name="loginForm" method="POST" action="service/device/register" class="navbar-form navbar-right" enctype='application/json'>
             <div class="form-group">
-              <input type="text" placeholder="Email" name="username" class="form-control">
+              <input type="text" placeholder="Email" name="username" class="form-control" enctype="APPLICATION_JSON" >
             </div>
             <div class="form-group">
               <input type="password" placeholder="Password" name="password"  class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+           <button type="submit" class="btn btn-success">Sign in</button>
+            
           </form>
         </div><!--/.navbar-collapse -->
       </div>

@@ -1,4 +1,4 @@
-package smart.board;
+package servletes;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LogOutServlet
+ * Servlet implementation class DevicePageServlet
  */
-@WebServlet("/LogOutServlet")
-public class LogOutServlet extends HttpServlet {
+@WebServlet("/DevicePageServlet")
+public class DevicePageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogOutServlet() {
+    public DevicePageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,18 +36,6 @@ public class LogOutServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
-		
-		request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/Home-page.jsp");
-		
-		
-//		HttpSession session = request.getSession();
-//		session.invalidate(); 
-//		
-//		String Website ="http://localhost:8080/smart-home-board/Homepage.jsp";
-//		response.sendRedirect(Website);
-//		
 	}
 
 }
