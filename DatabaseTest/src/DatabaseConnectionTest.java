@@ -1,23 +1,25 @@
-package dbAccess;
-
 import java.sql.*;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+public class DatabaseConnectionTest {
 
-import org.json.simple.JSONObject;
-
-
-public class DatabaseConnection {
 	private Connection dbConnection;
-
-	public DatabaseConnection() throws SQLException {
+	
+	public static void main(String args[]){
+		DatabaseConnectionTest test;
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String url = "jdbc:sqlserver://localhost:3306/sql11169212";
+			test = new DatabaseConnectionTest();
+			test.executeUpdate("insert into User (userName, userID) values (ahmed, 2552)");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public DatabaseConnectionTest() throws SQLException {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://sql11169212.freemysqlhosting.net";
 			String userName = "sql11169212";
 			String password = "b6gW4xKsK1";
 			// get a connection to database with the connection string URL
@@ -49,5 +51,6 @@ public class DatabaseConnection {
 		// dbConnection.prepareStatement(sql);
 		return dbConnection.prepareStatement(sql);
 	}
+	
 
 }
