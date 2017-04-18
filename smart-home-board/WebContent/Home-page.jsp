@@ -36,7 +36,7 @@
          <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="Home-page.jsp">Home</a></li>
-            <li><a href="tabs.html">Tabs menue</a></li>
+            <li><a href="tabs.html">Tabs Menu</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="#">Contact</a></li>
             <li class="dropdown">
