@@ -8,7 +8,7 @@ public class DatabaseConnectionTest {
 		DatabaseConnectionTest test;
 		try {
 			test = new DatabaseConnectionTest();
-			test.executeUpdate("insert into User (userName, userID) values ('ahmed', 2552)");
+			test.executeUpdate("insert into User (userName, userID) values (ahmed, 2552)");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -19,7 +19,7 @@ public class DatabaseConnectionTest {
 	public DatabaseConnectionTest() throws SQLException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11169212";
+			String url = "jdbc:mysql://sql11169212.freemysqlhosting.net";
 			String userName = "sql11169212";
 			String password = "b6gW4xKsK1";
 			// get a connection to database with the connection string URL
