@@ -13,6 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.ParseConversionEvent;
 import org.json.simple.JSONObject;
+import com.sun.xml.internal.ws.api.message.Message;
+
 
 @Path("/device")
 public class DeviceCTRLService {
@@ -20,20 +22,21 @@ public class DeviceCTRLService {
 	
 	@POST
 	@Path("/register")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public static JSONObject receiveDevice(JSONObject inputJsonObj) throws Exception {
+	public String receiveDevice() {
 		//receive device data and save in database *registeration process*
-	    String input = (String) inputJsonObj.get("name");
-	    String psswd = (String) inputJsonObj.get("password");
-	    String output = "The input you sent is :" + input;
-	    
-	    JSONObject outputJsonObj = new JSONObject();
-	    
-	    outputJsonObj.put("output", output);
-
-	    return outputJsonObj;
 		
+		
+	   // String input = (String) inputJsonObj.get("name");
+	   // String psswd = (String) inputJsonObj.get("password");
+	    //String output = "The input you sent is :" + input;
+	    
+	    //JSONObject outputJsonObj = new JSONObject();
+	    
+	    //outputJsonObj.put("output", output);
+
+	    //return outputJsonObj;
+		return "post success";
 	}
 	
 	@POST
