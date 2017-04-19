@@ -12,7 +12,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.ParseConversionEvent;
+
 import org.json.simple.JSONObject;
+
+
 
 @Path("/device")
 public class DeviceCTRLService {
@@ -20,19 +23,13 @@ public class DeviceCTRLService {
 	
 	@POST
 	@Path("/register")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes("text/plain")
 	@Produces(MediaType.APPLICATION_JSON)
-	public static JSONObject receiveDevice(JSONObject inputJsonObj) throws Exception {
+	public static String receiveDevice(String body) throws Exception {
 		//receive device data and save in database *registeration process*
-	    String input = (String) inputJsonObj.get("name");
-	    String psswd = (String) inputJsonObj.get("password");
-	    String output = "The input you sent is :" + input;
-	    
-	    JSONObject outputJsonObj = new JSONObject();
-	    
-	    outputJsonObj.put("output", output);
-
-	    return outputJsonObj;
+	    //String input = (String) inputJsonObj.get("name");
+	    //String psswd = (String) inputJsonObj.get("password");
+        return "hi";
 		
 	}
 	
