@@ -1,15 +1,20 @@
 package rest;
 
 import controllers.Device;
+
+import java.io.BufferedReader;
 import java.net.URI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.ParseConversionEvent;
 
@@ -23,13 +28,12 @@ public class DeviceCTRLService {
 	
 	@POST
 	@Path("/register")
-	@Consumes("text/plain")
-	@Produces(MediaType.APPLICATION_JSON)
-	public static String receiveDevice(String body) throws Exception {
+	@Consumes("application/json")
+	public static String receiveDevice(@Context HttpServletRequest request/*String body*/) throws Exception {
 		//receive device data and save in database *registeration process*
-	    //String input = (String) inputJsonObj.get("name");
-	    //String psswd = (String) inputJsonObj.get("password");
-        return "hi";
+        // u need to check how to get the http request inside this function.
+		BufferedReader x = request.getReader();
+		return "hi";
 		
 	}
 	
