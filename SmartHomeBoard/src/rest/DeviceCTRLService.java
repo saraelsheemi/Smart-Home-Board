@@ -43,10 +43,9 @@ public class DeviceCTRLService {
 		DeviceCTRL ctrl = new DeviceCTRL(device);
 		try{
 		ctrl.registerDevice();
-		System.out.println("device registerd");
 		return "device regesterd succesfully";
 		}catch(Exception e){
-			return "failed"; //e.getStackTrace().toString();
+			return e.getStackTrace().toString();
 		}
 	}
 	

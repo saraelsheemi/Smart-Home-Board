@@ -7,8 +7,8 @@ import dbAccess.DeviceQueries;
 
 public class DeviceCTRL {
 	private Device device ;
-	public DeviceCTRL(Entities.Device device) {
-		device = device;
+	public DeviceCTRL(Device device) {
+		this.device = device;
 	}
 	public void registerDevice() throws SQLException{
 		 DeviceQueries query = new DeviceQueries(device);
