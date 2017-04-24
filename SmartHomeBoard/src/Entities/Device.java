@@ -1,14 +1,42 @@
-package controllers;
+package Entities;
 
 public class Device {
+	
+	
 	private int id ;
 	private String name;
+	private int serialNumber;
 	private boolean Status;
 	private boolean available ;
 	private int portNumber;
+	private String ipAddress ;
 	private boolean monitored;
+	private int boardID;
+	
+	public int getBoardID() {
+		return boardID;
+	}
+	public void setBoardID(int boardID) {
+		this.boardID = boardID;
+	}
+	public String getIpAddress() {
+		return ipAddress;
+	}
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
 	private boolean receiveNotification;
 	
+	public int getSerialNumber() {
+		return serialNumber;
+	}
+	public void setSerialNumber(int serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+	public Device(String name, String serialNumber, int portNumber) {
+		this.name = name;
+		this.portNumber = portNumber;
+	}
 	/**
 	 * @return the id
 	 */

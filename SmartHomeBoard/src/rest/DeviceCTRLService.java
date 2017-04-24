@@ -1,7 +1,5 @@
 package rest;
 
-import controllers.Device;
-
 import java.io.BufferedReader;
 import java.net.URI;
 import java.sql.ResultSet;
@@ -23,79 +21,82 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import Entities.Device;
+import controllers.DeviceCTRL;
+
 
 
 @Path("/device")
 public class DeviceCTRLService {
-	private Device Device;
-	
+	private static Device device;
 	
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/fun")
-	public String getMsg(String x) throws ParseException{
-		JSONParser y = new JSONParser();
-		JSONObject j = (JSONObject) y.parse(x);
-		return j.get("title").toString();
-	}
-
-
-	@POST
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/register")
-	public static String receiveDevice(String message) throws Exception {
+	public static String registerDevice(String message) throws Exception {
 		//receive device data and save in database *registeration process*
-        // u need to check how to get the http request inside this function.
-		return message;
+		JSONParser parser = new JSONParser();
+		JSONObject messageobj = (JSONObject) parser.parse(message);
+		device = new Device(messageobj.get("deviceName").toString(),
+							messageobj.get("serialNumber").toString(),
+							Integer.parseInt(messageobj.get("portNumber").toString()));
+		DeviceCTRL ctrl = new DeviceCTRL(device);
+		try{
+		ctrl.registerDevice();
+		System.out.println("device registerd");
+		return "device regesterd succesfully";
+		}catch(Exception e){
+			return "failed"; //e.getStackTrace().toString();
+		}
 	}
 	
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/remove")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public static void removeDevice() {
 		//remove device from database 
 	}
 	
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/add")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public static void addDevice() {
 		//add device to user board 
 	}
 	
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/sendCommand")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public static void sendCommand() {
 		//send command to a certain device with open port number
 	}
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/enableNotification")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public static void enableNotification() {
 		//enable notification to a certain device
 	}
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/disableNotification")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public static void disableNotification() {
 	}
 	
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/pullNotification")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public static void pullNotification() {
 	}
 	
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getInfo")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public static void getInfo() {
 	}
 	
 	@GET
-	@Path("/getStatus")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getStatus")
 	public static String getStatus() {
 		JSONObject object = new JSONObject();
 		object.put("Account", "Created");

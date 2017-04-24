@@ -1,6 +1,3 @@
-/Entities/
-/controllers/
 /dbAccess/
 /rest/
-/service/
-/servletes/
+/controllers/

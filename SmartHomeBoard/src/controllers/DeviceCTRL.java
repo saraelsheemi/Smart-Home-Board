@@ -1,16 +1,28 @@
 package controllers;
 
+import java.sql.SQLException;
+
+import Entities.Device;
+import dbAccess.DeviceQueries;
+
 public class DeviceCTRL {
-	private Device Device ;
-	 public static void receiveDevice(){};
-	 public static void removeDevice(){};
-	 public static void addDevice(){};
-	 public static void sendCommand(){};
-	 public static void enableNotification(){};
-	 public static void disableNotification(){};
-	 public static void pullNotification(){};
-	 public static void getInfo(){};
-	 public static void getStatus(){}; // needs to be boolean 
+	private Device device ;
+	public DeviceCTRL(Entities.Device device) {
+		device = device;
+	}
+	public void registerDevice() throws SQLException{
+		 DeviceQueries query = new DeviceQueries(device);
+		 System.out.println("inside ctrl");
+		 query.registerDevice();
+	 }
+	public void removeDevice(){}
+	public void addDevice(){}
+	public void sendCommand(){}
+	 public void enableNotification(){}
+	 public void disableNotification(){}
+	 public void pullNotification(){}
+	 public void getInfo(){}
+	 public void getStatus(){} // needs to be boolean 
 	 
 	 
 }

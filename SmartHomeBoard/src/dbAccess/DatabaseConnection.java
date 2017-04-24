@@ -37,11 +37,9 @@ public class DatabaseConnection {
 
 	}
 
-	public int executeUpdate(String sqlQuery) throws SQLException {
+	public void executeUpdate(String sqlQuery) throws SQLException {
 		Statement statement = dbConnection.createStatement();
 		statement.executeUpdate(sqlQuery);
-
-		return 0;
 
 	}
 
