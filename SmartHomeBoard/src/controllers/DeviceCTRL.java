@@ -12,7 +12,6 @@ public class DeviceCTRL {
 	}
 	public void registerDevice() throws SQLException{
 		 DeviceQueries query = new DeviceQueries(device);
-		 System.out.println("inside ctrl");
 		 query.registerDevice();
 	 }
 	public void removeDevice(){}

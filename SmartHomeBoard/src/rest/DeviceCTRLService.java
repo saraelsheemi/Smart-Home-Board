@@ -40,12 +40,13 @@ public class DeviceCTRLService {
 		device = new Device(messageobj.get("deviceName").toString(),
 							messageobj.get("serialNumber").toString(),
 							Integer.parseInt(messageobj.get("portNumber").toString()));
+		System.out.println("recived JSON object in body"+message);
 		DeviceCTRL ctrl = new DeviceCTRL(device);
 		try{
 		ctrl.registerDevice();
 		return "device regesterd succesfully";
 		}catch(Exception e){
-			return e.getStackTrace().toString();
+			return e.getMessage();
 		}
 	}
 	
