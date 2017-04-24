@@ -13,11 +13,11 @@ import org.json.simple.JSONObject;
 
 public class DatabaseConnection {
 	private Connection dbConnection;
-
+	
 	public DatabaseConnection() throws SQLException {
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String url = "jdbc:sqlserver://localhost:3306/sql11169212";
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11169212";
 			String userName = "sql11169212";
 			String password = "b6gW4xKsK1";
 			// get a connection to database with the connection string URL
@@ -49,5 +49,6 @@ public class DatabaseConnection {
 		// dbConnection.prepareStatement(sql);
 		return dbConnection.prepareStatement(sql);
 	}
+	
 
 }
