@@ -7,7 +7,8 @@
  *
  */
 public class TV {
-
+	private final String ip = "localhost";
+	private final int port = 6678;
 	/**
 	 * @param args
 	 */
@@ -21,5 +22,10 @@ public class TV {
 		}
 		System.out.println("end of a tv program");
 	}
-
+	public String getIp() {
+		return ip;
+	}
+	public int getPort() {
+		return port;
+	}
 }
