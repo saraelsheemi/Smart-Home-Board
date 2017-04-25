@@ -35,12 +35,16 @@ public class DeviceCTRLService {
 	@Path("/register")
 	public static String registerDevice(String message) throws Exception {
 		//receive device data and save in database *registeration process*
+		System.out.println("message: " +message);
+		message.replaceAll("\\", "x");
+		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
+		//JSONObject jsonObj = new JSONObject();
 		device = new Device(messageobj.get("deviceName").toString(),
 							messageobj.get("serialNumber").toString(),
 							Integer.parseInt(messageobj.get("portNumber").toString()));
-		System.out.println("recived JSON object in body"+message);
+		System.out.println("recived JSON object in body: "+message);
 		DeviceCTRL ctrl = new DeviceCTRL(device);
 		try{
 		ctrl.registerDevice();
