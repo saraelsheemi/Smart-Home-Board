@@ -14,16 +14,16 @@ public class Registeration {
 	
 	@SuppressWarnings("unchecked")
 	public static void register(){
-	JSONObject body = new JSONObject();
-	body.put("deviceName", "TV");
-	body.put("serialNumber", "2374648");
-	body.put("portNumber", "2222");
-	System.out.println(body.toJSONString());
-	Client client = Client.create();
-	WebResource webResource = client.resource("http://localhost:8080/SmartHomeBoard/service/device/register");
-	String response = webResource.type(MediaType.APPLICATION_JSON)
+		JSONObject body = new JSONObject();
+		body.put("deviceName", "TV");
+		body.put("serialNumber", "2374648");
+		body.put("portNumber", "2222");
+		System.out.println(body.toJSONString());
+		Client client = Client.create();
+		WebResource webResource = client.resource("http://localhost:8080/SmartHomeBoard/service/device/register");
+		String response = webResource.type(MediaType.APPLICATION_JSON)
 					  .accept(MediaType.APPLICATION_JSON)
 					  .post(new GenericType<String>(){},body.toJSONString());
-	System.out.println(response);
+		System.out.println(response);
 	}
 }

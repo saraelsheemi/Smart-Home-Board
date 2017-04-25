@@ -1,30 +1,16 @@
 package rest;
 
-import java.io.BufferedReader;
-import java.net.URI;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.xml.bind.ParseConversionEvent;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import Entities.Device;
 import controllers.DeviceCTRL;
-
-
 
 @Path("/device")
 public class DeviceCTRLService {
@@ -33,7 +19,7 @@ public class DeviceCTRLService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/register")
-	public static String registerDevice(String message) throws Exception {
+	public static String registerDevice(String message) throws ParseException {
 		//receive device data and save in database *registeration process*
 		System.out.println("message: " +message);
 		message = message.replaceAll("^\"|\"$", "");
@@ -52,7 +38,7 @@ public class DeviceCTRLService {
 		ctrl.registerDevice();
 		return "device regesterd succesfully";
 		}catch(Exception e){
-			return e.getMessage();
+			return e.getMessage(); 
 		}
 	}
 	
@@ -100,6 +86,7 @@ public class DeviceCTRLService {
 	public static void getInfo() {
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getStatus")
