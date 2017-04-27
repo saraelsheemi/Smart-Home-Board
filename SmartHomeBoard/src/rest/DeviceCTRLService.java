@@ -36,12 +36,10 @@ public class DeviceCTRLService {
 	public static String registerDevice(String message) throws Exception {
 		//receive device data and save in database *registeration process*
 		System.out.println("message: " +message);
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
+		message.replaceAll("\\", "x");
 		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
-		System.out.println("http body parsed from string to json");
 		//JSONObject jsonObj = new JSONObject();
 		device = new Device(messageobj.get("deviceName").toString(),
 							messageobj.get("serialNumber").toString(),
