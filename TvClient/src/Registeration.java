@@ -18,7 +18,7 @@ public class Registeration {
 	body.put("deviceName", "TV");
 	body.put("serialNumber", "2374648");
 	body.put("portNumber", "2222");
-	System.out.println(body.toJSONString());
+	System.out.println(body.toString());
 	Client client = Client.create();
 	WebResource webResource = client.resource("http://localhost:8080/SmartHomeBoard/service/device/register");
 	String response = webResource.type(MediaType.APPLICATION_JSON)
