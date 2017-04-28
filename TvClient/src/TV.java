@@ -7,11 +7,12 @@
  *
  */
 public class TV {
-
+	private final String ip = "localhost";
+	private final int port = 6678;
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		// TODO Auto-generated method stub
 		Registeration r = new Registeration();
 		try{
@@ -21,5 +22,10 @@ public class TV {
 		}
 		System.out.println("end of a tv program");
 	}
-
+	public String getIp() {
+		return ip;
+	}
+	public int getPort() {
+		return port;
+	}
 }

@@ -1,15 +1,16 @@
 package dbAccess;
 
 import java.sql.SQLException;
-
 import Entities.Device;
 import dbAccess.DatabaseConnection; 
+
 public class DeviceQueries {
-	private DatabaseConnection databaseConnection=new DatabaseConnection();
+	private DatabaseConnection databaseConnection;
 	private Device device;
 	
 	public DeviceQueries(Device device) throws SQLException {
 		this.device = device;
+		databaseConnection = new DatabaseConnection();
 	}
 	public void registerDevice() throws SQLException{
 		String statement="insert into Sensor values ('"+ device.getName().toString() +"',5,'"+

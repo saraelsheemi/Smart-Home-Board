@@ -10,6 +10,29 @@ public class User {
 	/**
 	 * @return the name
 	 */
+	public User(){}
+	public User(String email, String password){
+		this.email = email;
+		this.password = password;
+	}
+	public User(String name, String type, String gender, String email, String password) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.gender = gender;
+		this.email = email;
+		this.password = password;
+	}
+	public User(int id, String name, String type, String gender, String email, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.gender = gender;
+		this.email = email;
+		this.password = password;
+	}
+	
 	public String getName() {
 		return name;
 	}

@@ -9,8 +9,15 @@ public class NetworkCTRL {
 	private InputStream inputStream;
 	private OutputStream outputStream;
 	
-	public void sendData(String data){};
-	public void receieveData(){};
+	public NetworkCTRL(){
+		
+	}
+	public void sendData(String data){
+		
+	}
+	public void receieveData(){
+		
+	}
 	
 
 }

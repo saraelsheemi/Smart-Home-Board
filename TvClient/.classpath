@@ -2,10 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry exported="true" kind="lib" path="D:/Smart-Home-Board/TvClient/lib/genson-0.93.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Smart-Home-Board/TvClient/lib/jersey-bundle-1.9.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Smart-Home-Board/TvClient/lib/jersey-core-1.9.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Smart-Home-Board/TvClient/lib/json-simple-1.1.1.jar"/>
+=======
+>>>>>>> b7db6bc54abaef7f4ff3f0dd3f71ee0ceb8aeb11
 	<classpathentry kind="lib" path="lib/genson-0.93.jar"/>
 	<classpathentry kind="lib" path="lib/jersey-bundle-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jersey-core-1.9.jar"/>
