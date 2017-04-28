@@ -1,7 +1,5 @@
 package controllers;
 
-import java.sql.SQLException;
-
 import Entities.User;
 import dbAccess.UserQueries;
 
@@ -11,24 +9,24 @@ public class UserCTRL {
 		// TODO Auto-generated constructor stub
 		this.user = user;
 	}
-	public void signIn() throws SQLException{
+	public void signIn(){
 		UserQueries query = new UserQueries(user);
 		query.signIn();
 	}
 	public void SignOut(){}
-	public void signUp() throws SQLException{
+	public void signUp(){
 		UserQueries query = new UserQueries(user);
 		query.signUp();
 	}
-	public void addUser() throws SQLException{
+	public void addUser(){
 		UserQueries query = new UserQueries(user);
 		query.addUser();
 	}
-	public void removeUser() throws SQLException{
+	public void removeUser(){
 		UserQueries query = new UserQueries(user);
 		query.removeUser();
 	}
-	public void deleteAccount() throws SQLException{
+	public void deleteAccount(){
 		UserQueries query = new UserQueries(user);
 		query.deleteAccount();
 	}

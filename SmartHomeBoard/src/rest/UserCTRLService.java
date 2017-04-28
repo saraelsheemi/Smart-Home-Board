@@ -46,7 +46,7 @@ public class UserCTRLService {
 		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
-		user = new User(messageobj.get("name").toString(),"admin",messageobj.get("gender").toString(), messageobj.get("email").toString(),messageobj.get("password").toString());
+		user = new User(/*fill the user data*/);
 		UserCTRL ctrl = new UserCTRL(user);
 		try{
 			ctrl.signUp();

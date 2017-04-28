@@ -9,12 +9,13 @@
 <body>
 <h3>Login Form</h3>
 <hr/>
-<form name="loginForm" method="POST" action="test.jsp">
-<p>Name: <input type="text" name="firstName"/> </p>
-<p>Gender   : <input type="text" name="gender"/> </p>
-<p>Email     : <input type="text" name="email"/> </p>
+<form name="loginForm" method="POST" action="">
+<p>First name: <input type="text" name="firstName" /> </p>
+<p>Last name : <input type="text" name="lastName" /> </p>
 <p>Password  : <input type="password" name="password" /> </p>
-<button name="SignupButton" type="submit">Sign up</button>
+<p>Email     : <input type="text" name="email" /> </p>
+<p>Country   : <input type="text" name="country" /> </p>
+<button name="SignupButton" type="submit">Sign up </button>
 </form>
 
 <p><a href="Homepage.jsp">Back</a> </p>
