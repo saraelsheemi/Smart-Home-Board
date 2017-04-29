@@ -21,7 +21,7 @@ public class BoardCTRLService {
 	public static String addBoard(String message) throws ParseException{
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
-		board = new Board(/*fill the board info*/);
+		board = new Board(messageobj.get("boardName").toString());
 		BoardCTRL ctrl = new BoardCTRL(board);
 		try{
 			ctrl.addBoard();
@@ -40,11 +40,11 @@ public class BoardCTRLService {
 		message = message.replaceAll("\\\\", "");
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
-		board = new Board(/*fill the board info*/);
+		board = new Board(Integer.parseInt(messageobj.get("boardID").toString()));
 		BoardCTRL ctrl = new BoardCTRL(board);
 		try{
-			ctrl.addBoard();
-			return "Board added successfully";
+			ctrl.removeBoard();
+			return "Board removed successfully";
 		}catch(Exception e){
 			return e.getMessage();
 		}
