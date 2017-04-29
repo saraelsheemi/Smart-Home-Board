@@ -21,9 +21,6 @@ public class UserCTRLService {
 	@Path("/signin")
 	public static void signIn(String message) throws ParseException{
 		System.out.println("message: " +message);
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
-		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		user = new User(messageobj.get("email").toString(),messageobj.get("password").toString());

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ page
 	import="java.net.URI , 
 javax.ws.rs.client.Client , 
@@ -22,27 +22,33 @@ javax.ws.rs.client.Entity"%>
 <title>Insert title here</title>
 </head>
 <body>
-<%
-String name = request.getParameter("name").toString();
-String email = request.getParameter("email").toString();
-String password = request.getParameter("password").toString();
-String gender = request.getParameter("gender").toString();
+	<%
+		String name = request.getParameter("name").toString();
+		String email = request.getParameter("email").toString();
+		String password = request.getParameter("password").toString();
+		String gender = request.getParameter("gender").toString();
 
-JSONObject body = new JSONObject();
-body.put("name", name);
-body.put("gender", gender);
-body.put("email", email);
-body.put("password", password);
-System.out.println(body.toJSONString());
-ClientConfig config1 = new ClientConfig();
+		JSONObject body = new JSONObject();
+		body.put("name", name);
+		body.put("gender", gender);
+		body.put("email", email);
+		body.put("password", password);
+		System.out.println(body.toJSONString());
+		ClientConfig config1 = new ClientConfig();
 
-Client client = ClientBuilder.newClient(config1);
+		Client client = ClientBuilder.newClient(config1);
 
-WebTarget target = client.target(UriBuilder.fromUri(
-		"http://localhost:8080/SmartHomeBoard/service/user/signup").build());
-Object obj = target.request().accept(MediaType.APPLICATION_JSON).post(Entity.entity(body.toJSONString(),MediaType.APPLICATION_JSON), String.class);
-String redirectURL = "http://localhost:8080/SmartHomeBoard";
-response.sendRedirect(redirectURL);
-%>
+		WebTarget target = client.target(UriBuilder.fromUri(
+				"http://localhost:8080/SmartHomeBoard/service/user/signup")
+				.build());
+		Object obj = target
+				.request()
+				.accept(MediaType.APPLICATION_JSON)
+				.post(Entity.entity(body.toJSONString(),
+						MediaType.APPLICATION_JSON), String.class);
+
+		String redirectURL = "http://localhost:8080/SmartHomeBoard";
+		response.sendRedirect(redirectURL);
+	%>
 </body>
 </html>

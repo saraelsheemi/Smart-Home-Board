@@ -1,18 +1,22 @@
 package src;
 
 import java.net.URI;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+
 import org.glassfish.jersey.client.ClientConfig;
 import org.json.simple.parser.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import javax.persistence.*;
+import javax.swing.JOptionPane;
 import javax.ws.rs.client.Entity;
 
 public class Registeration {
@@ -37,7 +41,8 @@ public class Registeration {
 				.post(Entity.entity(body.toJSONString(),
 						MediaType.APPLICATION_JSON), String.class);
 		JSONObject response = (JSONObject) obj;
-		System.out.println(response.toJSONString());
+		//System.out.println("response"+response.toJSONString());
+		JOptionPane.showMessageDialog(null, response.toString());
 
 	}
 }

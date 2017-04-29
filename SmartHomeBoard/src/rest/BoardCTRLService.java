@@ -19,8 +19,6 @@ public class BoardCTRLService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/add")
 	public static String addBoard(String message) throws ParseException{
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		board = new Board(/*fill the board info*/);

@@ -22,9 +22,6 @@ public class DeviceCTRLService {
 	public static String registerDevice(String message) throws ParseException {
 		//receive device data and save in database *registeration process*
 		System.out.println("message: " +message);
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
-		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		System.out.println("http body parsed from string to json");
