@@ -1,7 +1,7 @@
 package controllers;
 
 import java.sql.SQLException;
-
+import java.sql.ResultSet;
 import Entities.User;
 import dbAccess.UserQueries;
 
@@ -11,9 +11,16 @@ public class UserCTRL {
 		// TODO Auto-generated constructor stub
 		this.user = user;
 	}
-	public void signIn() throws SQLException{
+	public User signIn() throws SQLException{
 		UserQueries query = new UserQueries(user);
-		query.signIn();
+		ResultSet result = query.getUserInfo(user.getEmail());
+		result.next();
+		User u = new User(result.getInt("userID"),result.getString("userName"),result.getString("userType"),result.getString("gender"),result.getString("email"),result.getString("password"));
+		if(user.getPassword()==u.getPassword()){
+			return u;
+		}else{
+			return null;
+		}
 	}
 	public void SignOut(){}
 	public void signUp() throws SQLException{

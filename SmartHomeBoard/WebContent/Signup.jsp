@@ -5,11 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Form</title>
+<link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 	<h3>Login Form</h3>
 	<hr />
-	<form name="loginForm" method="POST" action="signUpRequest.jsp">
+	<form name="loginForm" method="POST" action="requests/signUpRequest.jsp">
 		<p>
 			Name: <input type="text" name="name" />
 		</p>

@@ -16,6 +16,14 @@ public class UserQueries {
 	public void signIn(){
 		
 	}
+	public ResultSet getUserInfo(String email) throws SQLException{
+		String statement="select * from User where email = '"+email+"'";
+		//syntax: select * from User where email = 'm@g.com'
+		System.out.println("sql statment: "+statement);
+		ResultSet result = databaseConnection.executeQuery(statement);
+		System.out.println("query executed");
+		return result;
+	}
 	public void signUp() throws SQLException{
 		id = this.getLastID();
 		String statement="insert into User values ('"+ user.getName().toString() +"', "+ String.valueOf(id+1) +" ,'admin','"+user.getEmail().toString()+"','"+user.getPassword().toString()+"','"+user.getGender().toString()+"')";

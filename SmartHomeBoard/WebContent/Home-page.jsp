@@ -50,7 +50,7 @@
           </ul>
         </li>
           </ul>
-          <form name="loginForm" method="POST" action="service/device/register" class="navbar-form navbar-right" enctype='application/json'>
+          <form name="loginForm" method="POST" action="requests/signInRequest.jsp" class="navbar-form navbar-right" enctype='application/json'>
             <div class="form-group">
               <input type="text" placeholder="Email" name="username" class="form-control" enctype="APPLICATION_JSON" >
             </div>
