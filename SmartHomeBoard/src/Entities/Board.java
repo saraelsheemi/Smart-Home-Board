@@ -18,6 +18,10 @@ public class Board {
 		this.name = name;
 		this.id = id;
 	}
+	public Board(int id) {
+
+		this.id = id;
+	}
 	public Board(String name, int id, ArrayList<User> users, ArrayList<Device> devices) {
 		super();
 		this.name = name;
