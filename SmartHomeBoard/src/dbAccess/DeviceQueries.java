@@ -1,5 +1,6 @@
 package dbAccess;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import Entities.Device;
@@ -18,5 +19,12 @@ public class DeviceQueries {
 		System.out.println("sql statment: "+statement);
 		databaseConnection.executeUpdate(statement);
 		System.out.println("query executed");
+	}
+	public int getLastID() throws SQLException{
+		databaseConnection = new DatabaseConnection();
+		ResultSet resultSet = databaseConnection.executeQuery("Select max(deviceID) from Sensor");
+		resultSet.next();
+		return Integer.parseInt(resultSet.getString(1));		
+
 	}
 }
