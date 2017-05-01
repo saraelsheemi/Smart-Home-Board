@@ -35,22 +35,22 @@
         </div>
          <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-         
-            <li><a href="# ">About</a></li>
+            <li class="active"><a href="Home-page.jsp">Home</a></li>
+            <li><a href="tabs.html">Tabs Menu</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="#">Contact</a></li>
-            
-          
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Add New Device </a></li>
+            <li><a href="#">check status</a></li>
+            <li><a href="#">Edit profile information</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Log out</a></li>
           </ul>
-          <form name="loginForm" method="POST" action="requests/signInRequest.jsp" class="navbar-form navbar-right" enctype='application/json'>
-            <div class="form-group">
-              <input type="email" placeholder="Email" name="email" class="form-control" enctype="APPLICATION_JSON" required >
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" name="password"  class="form-control" required>
-            </div>
-           <button type="submit" class="btn btn-success">Sign in</button>
-            
-          </form>
+        </li>
+          </ul>
+          
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -58,10 +58,14 @@
       <div class="container">
         <div class="row">
           <div class ="col-md-6">
-          	
-			<h1> Hello <span class="word"> users! </span></h1>
-            <p> <span class="word"> Welcome to the smart home board control website You are currently not signin Not yet a member? <a href="signUp-ui.jsp">Signup </span></a></p>
-            <p><a class="btn btn-primary btn-lg id="button" href ="#" role ="button"> Learn More </a></p>
+          	<% if (session.getAttribute("theName") == null) { 
+          		String redirectURL = "http://localhost:8080/SmartHomeBoard";
+        		response.sendRedirect(redirectURL);
+			%>          
+					<% } else { %>
+    					<h1> Hello <span class="word"> </span>  <%= session.getAttribute( "theName" ) %></h1>
+    						<p><a class="btn btn-primary btn-lg id="button" href ="#" role ="button"> Sign out  </a></p>
+						<% } %>
             </div>
             </div>
             </div>

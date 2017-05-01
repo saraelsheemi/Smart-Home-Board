@@ -46,7 +46,7 @@ javax.ws.rs.client.Entity"%>
 				.accept(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(body.toJSONString(),
 						MediaType.APPLICATION_JSON), String.class);
-
+		
 		String redirectURL = "http://localhost:8080/SmartHomeBoard";
 		response.sendRedirect(redirectURL);
 	%>

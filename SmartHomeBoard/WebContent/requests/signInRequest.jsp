@@ -23,6 +23,9 @@ javax.ws.rs.client.Entity"%>
 </head>
 <body>
 <%
+		String name = request.getParameter( "email" );
+		session.setAttribute( "theName", name );
+
 		String email = request.getParameter("email").toString();
 		String password = request.getParameter("password").toString();
 
@@ -43,7 +46,8 @@ javax.ws.rs.client.Entity"%>
 				.post(Entity.entity(body.toJSONString(),
 						MediaType.APPLICATION_JSON), String.class);
 
-		String redirectURL = "http://localhost:8080/SmartHomeBoard";
+		   
+		String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";
 		response.sendRedirect(redirectURL);
 	%>
 </body>

@@ -26,7 +26,7 @@
 		<button name="SignupButton" type="submit">Sign up</button>
 	</form>
 	<p>
-		<a href="Homepage.jsp">Back</a>
+		<a href="Home-page.jsp">Back</a>
 	</p>
 	</div>
 </body>
