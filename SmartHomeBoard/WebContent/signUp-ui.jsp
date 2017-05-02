@@ -229,17 +229,16 @@ input {
 <body>
   <h1 class="register-title">Welcome</h1>
   <form class="register" method ="POST" action ="requests/signUpRequest.jsp">
-    <div class="register-switch">
-      <input type="radio" name="gender" value="gender" id="sex_f" class="register-switch-input" checked>
-      <label for="sex_f" class="register-switch-label">Female</label>
-      
-      <input type="radio" name="sex"  name="gender" value="M" id="sex_m" class="register-switch-input">
-      <label for="sex_m" class="register-switch-label">Male</label>
-    </div>
+    
     <input type="text" class="register-input" placeholder="Name" name ="name">
     <input type="email" class="register-input" placeholder="Email address" name ="email">
     <input type="password" class="register-input" placeholder="Password" name = "password">
+    <select name = "gender" class ="register-input" >
+    <option> Male </option>
+    <option> Female </option>
+    </select>
     <input type="submit" value="Create Account" class="register-button">
+    
   </form>
 </body>
 </html>

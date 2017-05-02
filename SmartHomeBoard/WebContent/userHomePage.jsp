@@ -51,7 +51,7 @@ import="Entities.User"
             <li><a href="#">check status</a></li>
             <li><a href="#">Edit profile information</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Log out</a></li>
+            <li><a href="requests/signoutHandler.jsp">Log out</a></li>
           </ul>
         </li>
           </ul>
@@ -63,7 +63,7 @@ import="Entities.User"
       <div class="container">
         <div class="row">
           <div class ="col-md-6">
-          	<% if (session.getAttribute("user") == null) { 
+          	<% if (session.getAttribute("username").equals("null")) { 
           		String redirectURL = "http://localhost:8080/SmartHomeBoard";
         		response.sendRedirect(redirectURL);
 			%>          
@@ -73,7 +73,7 @@ import="Entities.User"
     																					
     					
     					%></h1>
-    						<p><a class="btn btn-primary btn-lg id="button" href ="#" role ="button"> Sign out  </a></p>
+    						<p><a class="btn btn-primary btn-lg id="button" href ="requests/signoutHandler.jsp" role ="button"> Sign out  </a></p>
 						<% } %>
             </div>
             </div>

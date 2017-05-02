@@ -13,7 +13,7 @@ public class UserCTRL {
 	}
 	public User signIn() throws SQLException{
 		UserQueries query = new UserQueries(user);
-		ResultSet result = query.signIn(user.getEmail());
+		ResultSet result = query.signIn(user.getEmail(), user.getPassword());
 		result.next();
 		User u = new User(result.getInt("userID"),result.getString("userName"),result.getString("userType"),result.getString("gender"),result.getString("email"),result.getString("password"));
 		return u;

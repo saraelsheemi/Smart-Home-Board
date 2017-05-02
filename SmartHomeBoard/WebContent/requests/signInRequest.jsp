@@ -45,9 +45,10 @@ Entities.User"
 				.accept(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(body.toJSONString(),
 						MediaType.APPLICATION_JSON), String.class);
+		System.out.println("obj: : "+obj.toString());
 		JSONObject userTemp = new JSONObject();
 		JSONParser parser = new JSONParser();
-		JSONObject userobj = (JSONObject) parser.parse(userTemp.toString());
+		JSONObject userobj = (JSONObject) parser.parse(obj.toString());
 		System.out.println("userdata: "+userobj.toJSONString());
 	/*
 		if(userobj==null){
@@ -57,8 +58,12 @@ Entities.User"
 	
 		String email = userobj.get("email").toString();
 */
-		session.setAttribute( "username", userobj.get("userName").toString());
-		session.setAttribute( "userId", userobj.get("userID").toString());
+		if(userobj.get("userName") != "null"){
+			session.setAttribute( "username", userobj.get("userName").toString());
+			session.setAttribute( "userId", userobj.get("userID").toString());
+		}else{
+			out.println("<html> user not found </html>");
+		}
 		
 		   
 		String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";

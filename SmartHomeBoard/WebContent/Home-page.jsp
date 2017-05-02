@@ -33,6 +33,17 @@
           </button>
           <a class="navbar-brand" href="#">Smart Home Board</a>
         </div>
+        
+        <%  
+       	 if(request.getSession(false) == null){
+        	}else{
+        		if (!session.getAttribute("username").equals("null")) {
+              		String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";
+            		response.sendRedirect(redirectURL);
+        		}
+        	}
+        
+			%>        
          <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
          
@@ -62,8 +73,8 @@
 			<h1> Hello <span class="word"> users! </span></h1>
             <p> <span class="word"> Welcome to the smart home board control website You are currently not signin Not yet a member? <a href="signUp-ui.jsp">Signup </span></a></p>
             <p><a class="btn btn-primary btn-lg id="button" href ="#" role ="button"> Learn More </a></p>
-            </div>
-            </div>
+           			 </div>
+           		</div>
             </div>
             </div>
     </div>

@@ -13,8 +13,8 @@ public class UserQueries {
 		// TODO Auto-generated constructor stub
 		this.user = user;
 	}
-	public ResultSet signIn(String email) throws SQLException{
-		String statement="select * from User where email = '"+email+"'";
+	public ResultSet signIn(String email, String password) throws SQLException{
+		String statement="select * from User where email = '"+email+"' AND password = '"+password+"'";
 		//syntax: select * from User where email = 'm@g.com'
 		System.out.println("sql statment: "+statement);
 		ResultSet result = databaseConnection.executeQuery(statement);
