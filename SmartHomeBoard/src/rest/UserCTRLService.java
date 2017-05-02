@@ -19,17 +19,22 @@ public class UserCTRLService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/signin")
-	public static void signIn(String message) throws ParseException{
+	public static JSONObject signIn(String message) throws ParseException{
 		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		user = new User(messageobj.get("email").toString(),messageobj.get("password").toString());
 		UserCTRL ctrl = new UserCTRL(user);
+		JSONObject responseBody = new JSONObject();
 		try{
-			ctrl.signIn();
+			user = ctrl.signIn();
+			responseBody.put("userName", user.getName());
+			responseBody.put("userID", user.getId());
 		}catch(Exception e){
 			e.getMessage();
+			responseBody.put("response", "null");
 		}
+		return responseBody;
 	}
 	public static void SignOut(){}// the sign out method doesn't have anything to do with the backend 
 	  							  // it just should remove the user and his info from the session

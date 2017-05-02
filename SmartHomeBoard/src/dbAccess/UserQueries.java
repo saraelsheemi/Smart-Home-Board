@@ -13,10 +13,7 @@ public class UserQueries {
 		// TODO Auto-generated constructor stub
 		this.user = user;
 	}
-	public void signIn(){
-		
-	}
-	public ResultSet getUserInfo(String email) throws SQLException{
+	public ResultSet signIn(String email) throws SQLException{
 		String statement="select * from User where email = '"+email+"'";
 		//syntax: select * from User where email = 'm@g.com'
 		System.out.println("sql statment: "+statement);

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page
+import="Entities.User"
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   
     <title>Smart Home Board</title>
 
     <!-- Bootstrap -->
@@ -58,12 +63,16 @@
       <div class="container">
         <div class="row">
           <div class ="col-md-6">
-          	<% if (session.getAttribute("theName") == null) { 
+          	<% if (session.getAttribute("user") == null) { 
           		String redirectURL = "http://localhost:8080/SmartHomeBoard";
         		response.sendRedirect(redirectURL);
 			%>          
 					<% } else { %>
-    					<h1> Hello <span class="word"> </span>  <%= session.getAttribute( "theName" ) %></h1>
+    					<h1> Hello <span class="word"> </span>  <%= session.getAttribute("username")
+    					
+    																					
+    					
+    					%></h1>
     						<p><a class="btn btn-primary btn-lg id="button" href ="#" role ="button"> Sign out  </a></p>
 						<% } %>
             </div>

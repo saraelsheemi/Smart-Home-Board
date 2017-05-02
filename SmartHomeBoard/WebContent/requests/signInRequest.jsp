@@ -14,7 +14,9 @@ org.json.simple.parser.*,org.json.simple.JSONObject,
 org.json.simple.parser.JSONParser,
 org.json.simple.parser.ParseException,
 javax.persistence.*,
-javax.ws.rs.client.Entity"%>
+javax.ws.rs.client.Entity,
+Entities.User"
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,8 +25,6 @@ javax.ws.rs.client.Entity"%>
 </head>
 <body>
 <%
-		String name = request.getParameter( "email" );
-		session.setAttribute( "theName", name );
 
 		String email = request.getParameter("email").toString();
 		String password = request.getParameter("password").toString();
@@ -45,7 +45,21 @@ javax.ws.rs.client.Entity"%>
 				.accept(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(body.toJSONString(),
 						MediaType.APPLICATION_JSON), String.class);
+		JSONObject userTemp = new JSONObject();
+		JSONParser parser = new JSONParser();
+		JSONObject userobj = (JSONObject) parser.parse(userTemp.toString());
+		System.out.println("userdata: "+userobj.toJSONString());
+	/*
+		if(userobj==null){
 
+			 <script> alert('Welcome ')</script>
+		}
+	
+		String email = userobj.get("email").toString();
+*/
+		session.setAttribute( "username", userobj.get("userName").toString());
+		session.setAttribute( "userId", userobj.get("userID").toString());
+		
 		   
 		String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";
 		response.sendRedirect(redirectURL);

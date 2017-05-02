@@ -13,14 +13,10 @@ public class UserCTRL {
 	}
 	public User signIn() throws SQLException{
 		UserQueries query = new UserQueries(user);
-		ResultSet result = query.getUserInfo(user.getEmail());
+		ResultSet result = query.signIn(user.getEmail());
 		result.next();
 		User u = new User(result.getInt("userID"),result.getString("userName"),result.getString("userType"),result.getString("gender"),result.getString("email"),result.getString("password"));
-		if(user.getPassword()==u.getPassword()){
-			return u;
-		}else{
-			return null;
-		}
+		return u;
 	}
 	public void SignOut(){}
 	public void signUp() throws SQLException{
