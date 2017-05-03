@@ -16,7 +16,7 @@ public class NetworkConnector {
 	private Socket socket;
 	private DataOutputStream outputStream;
 	private DataInputStream inputStream;
-	private TV tv;
+	private TV tv = new TV();
 	
 	public void send(String data) throws UnknownHostException, IOException{
 		socket=new Socket(serverSocket.getInetAddress(),tv.getPort());
@@ -33,13 +33,18 @@ public class NetworkConnector {
             socket = serverSocket.accept();
             System.out.println("Just connected to " + socket.getRemoteSocketAddress());
             inputStream = new DataInputStream(socket.getInputStream());
-            System.out.println("recevied command :" + inputStream);
+            String command =(String) inputStream.readUTF();
+            System.out.println("recevied command: " + command);
 		}catch(SocketTimeoutException s){
 			System.out.println("Socket timed out!");
 	    }catch(IOException e) {
 	        e.printStackTrace();
 	    }
 		return inputStream.toString();  
+	}
+	public static void main(String args[]) throws IOException{
+		NetworkConnector n = new NetworkConnector();
+		n.receive();
 	}
 	
 }

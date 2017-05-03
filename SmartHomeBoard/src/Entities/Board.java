@@ -6,6 +6,7 @@ public class Board {
 	
 	private String name ;
 	private int id ;
+	private int ownerId;
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Device> devices = new ArrayList<Device>();
 	
@@ -17,6 +18,12 @@ public class Board {
 		super();
 		this.name = name;
 		this.id = id;
+	}
+	public int getOwnerId() {
+		return ownerId;
+	}
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
 	}
 	public Board(int id) {
 

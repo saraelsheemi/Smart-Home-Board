@@ -19,6 +19,11 @@ public class DeviceQueries {
 		databaseConnection.executeUpdate(statement);
 		System.out.println("query executed");
 	}
+	public ResultSet checkExistance() throws SQLException{
+		databaseConnection = new DatabaseConnection();
+		ResultSet result = databaseConnection.executeQuery("select serialNumber from Sensor where serialNumber = "+String.valueOf(device.getSerialNumber()));
+		return result;
+	}
 	public int getLastID() throws SQLException{
 		databaseConnection = new DatabaseConnection();
 		ResultSet resultSet = databaseConnection.executeQuery("Select max(deviceID) from Sensor");

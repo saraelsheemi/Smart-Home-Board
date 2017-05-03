@@ -1,5 +1,6 @@
 package controllers;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import Entities.Device;
@@ -12,7 +13,10 @@ public class DeviceCTRL {
 	}
 	public void registerDevice() throws SQLException{
 		 DeviceQueries query = new DeviceQueries(device);
-		 query.registerDevice();
+		 ResultSet result = query.checkExistance();
+		 if(!result.next()){
+			 query.registerDevice();
+		 }
 	 }
 	public void removeDevice(){}
 	public void addDevice(){}

@@ -18,7 +18,9 @@ public class TV {
 		// TODO Auto-generated method stub
 		Registeration r = new Registeration();
 		try{
-		r.register();
+			r.register();
+			NetworkConnector n = new NetworkConnector();
+			System.out.println(n.receive());
 		}catch(Exception e){
 			e.getMessage();
 		}

@@ -1,5 +1,7 @@
 package rest;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,6 +24,7 @@ public class BoardCTRLService {
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		board = new Board(messageobj.get("boardName").toString());
+		board.setOwnerId(Integer.valueOf(messageobj.get("userId").toString()));
 		BoardCTRL ctrl = new BoardCTRL(board);
 		try{
 			ctrl.addBoard();
@@ -36,8 +39,6 @@ public class BoardCTRLService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/remove")
 	public static String removeBoard(String message) throws ParseException{
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		board = new Board(Integer.parseInt(messageobj.get("boardID").toString()));
@@ -50,5 +51,33 @@ public class BoardCTRLService {
 		}
 		
 	}
-	
+	@SuppressWarnings("unchecked")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getboards")
+	public static String getUserBoards(String message) throws ParseException{
+		JSONParser parser = new JSONParser();
+		JSONObject messageobj = (JSONObject) parser.parse(message);
+		System.out.println("message: "+ messageobj.toJSONString());
+		board = new Board();
+		board.setOwnerId(Integer.valueOf(messageobj.get("userID").toString()));
+		JSONObject response = new JSONObject();
+		ArrayList<Board> boards = new ArrayList<Board>();
+		BoardCTRL ctrl = new BoardCTRL(board);
+		System.out.println("before try block");
+		try{
+			System.out.println("inside try block");
+			boards = ctrl.getuserBoardsInfo();
+			System.out.println(boards.toString());
+			response.put("count", boards.size());
+			int size = boards.size();
+			for(int i = 0; i<size; i++){
+				response.put("board"+i+"Name", boards.get(i).getName());
+				response.put("board"+i+"ID", boards.get(i).getId());
+			}
+			return response.toJSONString();
+		}catch(Exception e){
+			return e.getMessage();
+		}
+	}
 }
