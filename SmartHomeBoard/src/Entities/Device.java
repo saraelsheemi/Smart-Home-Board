@@ -13,6 +13,23 @@ public class Device {
 	private boolean monitored;
 	private int boardID;
 	
+	public Device(){
+		this.id = 0;
+		this.name = " ";
+		this.serialNumber = 0;
+		this.Status = false;
+		this.available = false;
+		this.portNumber = 0;
+		this.ipAddress = " ";
+		this.monitored = false;
+		this.boardID = 0;
+	}
+	
+	public Device(String name, String serialNumber, int portNumber) {
+		this.name = name;
+		this.portNumber = portNumber;
+	}
+	
 	public int getBoardID() {
 		return boardID;
 	}
@@ -32,10 +49,6 @@ public class Device {
 	}
 	public void setSerialNumber(int serialNumber) {
 		this.serialNumber = serialNumber;
-	}
-	public Device(String name, String serialNumber, int portNumber) {
-		this.name = name;
-		this.portNumber = portNumber;
 	}
 	/**
 	 * @return the id

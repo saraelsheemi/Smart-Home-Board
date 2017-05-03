@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import Entities.Board;
 
 public class BoardQueries {
-	private DatabaseConnection databaseConnection=new DatabaseConnection();;
+	private DatabaseConnection databaseConnection=new DatabaseConnection();
 	private Board board;
 	public BoardQueries(Board board) throws SQLException {
 		// TODO Auto-generated constructor stub
