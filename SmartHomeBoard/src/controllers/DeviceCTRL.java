@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -8,6 +10,8 @@ import dbAccess.DeviceQueries;
 
 public class DeviceCTRL {
 	private Device device ;
+	public DeviceCTRL() {
+	}
 	public DeviceCTRL(Device device) {
 		this.device = device;
 	}
@@ -18,14 +22,47 @@ public class DeviceCTRL {
 			 query.registerDevice();
 		 }
 	 }
-	public void removeDevice(){}
-	public void addDevice(){}
-	public void sendCommand(){}
+	public void removeDevice(){
+		
+	}
+	public void addDevice(){
+		
+	}
+	public String sendCommand(String command) throws SQLException, UnknownHostException, IOException{
+		DeviceQueries query = new DeviceQueries(device);
+		NetworkCTRL network;
+		int portNumber;
+		ResultSet result = query.getInfo();
+		result.next();
+		portNumber = Integer.valueOf(result.getString("port number"));
+		network = new NetworkCTRL(portNumber);
+		network.sendData(command);
+		return network.receieveData();
+	}
 	public void enableNotification(){}
 	public void disableNotification(){}
 	public void pullNotification(){}
-	public void getInfo(){}
-	public void getStatus(){} // needs to be boolean 
+	public Device getInfo() throws SQLException{
+		DeviceQueries query = new DeviceQueries(device);
+		ResultSet result = query.getInfo();
+		result.next();
+		device.setName(result.getString("deviceName"));
+		device.setSerialNumber(Integer.valueOf(result.getString("serialNumber")));
+		device.setIpAddress(result.getString("IP number"));
+		device.setPortNumber(Integer.valueOf(result.getString("post number")));
+		return device;
+	}
+	public String getStatus() throws SQLException, UnknownHostException, IOException{
+		DeviceQueries query = new DeviceQueries(device);
+		NetworkCTRL network;
+		int portNumber;
+		ResultSet result = query.getInfo();
+		result.next();
+		portNumber = Integer.valueOf(result.getString("port number"));
+		network = new NetworkCTRL(portNumber);
+		network.sendData("getStatus");
+		return network.receieveData();
+	}  
 	 
 	 
 }

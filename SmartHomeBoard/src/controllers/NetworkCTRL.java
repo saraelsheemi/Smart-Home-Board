@@ -25,11 +25,12 @@ public class NetworkCTRL {
 		outputStream = new DataOutputStream(socket.getOutputStream());
 		outputStream.writeBytes(data);
 	}
-	public void receieveData() throws UnknownHostException, IOException{
+	public String receieveData() throws UnknownHostException, IOException{
 		socket = new Socket("localhost", port);
 		inputStream = new DataInputStream(socket.getInputStream());
 		String ack = inputStream.readUTF();
 		System.out.println(ack);
+		return ack;
 	}
 	public static void main(String args[]) throws IOException, InterruptedException{
 		NetworkCTRL c = new NetworkCTRL(6678);
