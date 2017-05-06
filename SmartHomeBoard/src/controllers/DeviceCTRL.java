@@ -34,7 +34,7 @@ public class DeviceCTRL {
 		int portNumber;
 		ResultSet result = query.getInfo();
 		result.next();
-		portNumber = Integer.valueOf(result.getString("port number"));
+		portNumber = Integer.valueOf(result.getString("portNumber"));
 		network = new NetworkCTRL(portNumber);
 		network.sendData(command);
 		return network.receieveData();
@@ -48,8 +48,8 @@ public class DeviceCTRL {
 		result.next();
 		device.setName(result.getString("deviceName"));
 		device.setSerialNumber(Integer.valueOf(result.getString("serialNumber")));
-		device.setIpAddress(result.getString("IP number"));
-		device.setPortNumber(Integer.valueOf(result.getString("post number")));
+		device.setIpAddress(result.getString("IPAddress"));
+		device.setPortNumber(Integer.valueOf(result.getString("portNumber")));
 		return device;
 	}
 	public String getStatus() throws SQLException, UnknownHostException, IOException{
@@ -58,7 +58,7 @@ public class DeviceCTRL {
 		int portNumber;
 		ResultSet result = query.getInfo();
 		result.next();
-		portNumber = Integer.valueOf(result.getString("port number"));
+		portNumber = Integer.valueOf(result.getString("portNumber"));
 		network = new NetworkCTRL(portNumber);
 		network.sendData("getStatus");
 		return network.receieveData();

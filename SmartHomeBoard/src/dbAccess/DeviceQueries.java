@@ -26,7 +26,7 @@ public class DeviceQueries {
 	}
 	public ResultSet getInfo() throws SQLException{
 		databaseConnection = new DatabaseConnection();
-		ResultSet result = databaseConnection.executeQuery("select * from Sensor where sensorID = "+String.valueOf(device.getId()));
+		ResultSet result = databaseConnection.executeQuery("select * from Sensor where deviceID = "+String.valueOf(device.getId()));
 		return result;
 	}
 	public int getLastID() throws SQLException{

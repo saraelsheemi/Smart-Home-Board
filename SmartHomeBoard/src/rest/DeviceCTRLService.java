@@ -106,7 +106,7 @@ public class DeviceCTRLService {
 		System.out.println("message: " +message);
 		System.out.println("http body parsed from string to json");
 		device = new Device();
-		device.setId(Integer.valueOf(messageobj.get("deviceId").toString()));
+		device.setId(Integer.valueOf(messageobj.get("deviceID").toString()));
 		try{
 			DeviceCTRL control = new DeviceCTRL(device);
 			device = control.getInfo();
@@ -116,8 +116,8 @@ public class DeviceCTRLService {
 		JSONObject response = new JSONObject();
 		response.put("deviceName", device.getName());
 		response.put("deviceID", device.getId());
-		response.put("port", device.getPortNumber());
-		response.put("IP", device.getIpAddress());
+		response.put("portNumber", device.getPortNumber());
+		response.put("IPAddress", device.getIpAddress());
 		response.put("serialNumber", device.getSerialNumber());
 		return response.toJSONString();
 	}

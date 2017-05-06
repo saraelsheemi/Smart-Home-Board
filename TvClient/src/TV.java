@@ -21,6 +21,7 @@ public class TV {
 			r.register();
 			NetworkConnector n = new NetworkConnector();
 			System.out.println(n.receive());
+			n.send("ack");
 		}catch(Exception e){
 			e.getMessage();
 		}

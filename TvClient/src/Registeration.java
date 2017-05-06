@@ -40,6 +40,7 @@ public class Registeration {
 				.accept(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(body.toJSONString(),
 						MediaType.APPLICATION_JSON), String.class);
+		System.out.println("requst sent");
 		JSONObject response = (JSONObject) obj;
 		//System.out.println("response"+response.toJSONString());
 		JOptionPane.showMessageDialog(null, response.toString());
