@@ -17,9 +17,13 @@ public class DeviceCTRL {
 	}
 	public void registerDevice() throws SQLException{
 		 DeviceQueries query = new DeviceQueries(device);
-		 ResultSet result = query.checkExistance();
+		 ResultSet result = null;
+		 result = query.checkExistance();
+		 System.out.println("result"+result.toString());
 		 if(!result.next()){
 			 query.registerDevice();
+		 }else{
+			 System.out.println("device already registerd");
 		 }
 	 }
 	public void removeDevice(){
@@ -28,16 +32,18 @@ public class DeviceCTRL {
 	public void addDevice(){
 		
 	}
-	public String sendCommand(String command) throws SQLException, UnknownHostException, IOException{
+	public String sendCommand(String command) throws SQLException, UnknownHostException, IOException, ClassNotFoundException{
 		DeviceQueries query = new DeviceQueries(device);
 		NetworkCTRL network;
+		String ack = new String();
 		int portNumber;
 		ResultSet result = query.getInfo();
 		result.next();
 		portNumber = Integer.valueOf(result.getString("portNumber"));
 		network = new NetworkCTRL(portNumber);
 		network.sendData(command);
-		return network.receieveData();
+		ack = network.receieveData();
+		return ack;
 	}
 	public void enableNotification(){}
 	public void disableNotification(){}
@@ -52,7 +58,7 @@ public class DeviceCTRL {
 		device.setPortNumber(Integer.valueOf(result.getString("portNumber")));
 		return device;
 	}
-	public String getStatus() throws SQLException, UnknownHostException, IOException{
+	public String getStatus() throws SQLException, UnknownHostException, IOException, ClassNotFoundException{
 		DeviceQueries query = new DeviceQueries(device);
 		NetworkCTRL network;
 		int portNumber;

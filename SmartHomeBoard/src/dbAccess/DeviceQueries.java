@@ -21,7 +21,10 @@ public class DeviceQueries {
 	}
 	public ResultSet checkExistance() throws SQLException{
 		databaseConnection = new DatabaseConnection();
-		ResultSet result = databaseConnection.executeQuery("select serialNumber from Sensor where serialNumber = "+String.valueOf(device.getSerialNumber()));
+		String statement = "select * from Sensor where serialNumber = "+String.valueOf(device.getSerialNumber());
+		System.out.println("statement: "+statement);
+		ResultSet result = null;
+		result = databaseConnection.executeQuery(statement);
 		return result;
 	}
 	public ResultSet getInfo() throws SQLException{

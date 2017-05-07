@@ -28,6 +28,7 @@ public class Device {
 	public Device(String name, String serialNumber, int portNumber) {
 		this.name = name;
 		this.portNumber = portNumber;
+		this.serialNumber = Integer.valueOf(serialNumber);
 	}
 	
 	public int getBoardID() {

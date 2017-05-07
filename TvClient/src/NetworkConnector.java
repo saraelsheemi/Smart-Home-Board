@@ -1,10 +1,9 @@
 package src;
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -14,37 +13,29 @@ public class NetworkConnector {
 	
 	private ServerSocket serverSocket;
 	private Socket socket;
-	private DataOutputStream outputStream;
-	private DataInputStream inputStream;
+	private ObjectOutputStream outputStream;
+	private ObjectInputStream inputStream;
 	private TV tv = new TV();
 	
 	public void send(String data) throws UnknownHostException, IOException{
-		socket=new Socket(serverSocket.getInetAddress(),tv.getPort());
-		DataOutputStream dataout=new DataOutputStream(socket.getOutputStream());  
-		dataout.writeUTF(data);  
-		dataout.flush();  
-		dataout.close();  
-		socket.close(); 
+		outputStream = new ObjectOutputStream(socket.getOutputStream());
+		outputStream.writeObject(data);
 	}
-	public String receive() throws IOException{
+	public String receive() throws IOException, ClassNotFoundException{
+		String command = new String();
 		try {
 			serverSocket = new ServerSocket(tv.getPort());
 			System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
             socket = serverSocket.accept();
             System.out.println("Just connected to " + socket.getRemoteSocketAddress());
-            inputStream = new DataInputStream(socket.getInputStream());
-            String command =(String) inputStream.readUTF();
-            System.out.println("recevied command: " + command);
+            inputStream = new ObjectInputStream(socket.getInputStream());
+            command = (String) inputStream.readObject();
 		}catch(SocketTimeoutException s){
 			System.out.println("Socket timed out!");
 	    }catch(IOException e) {
 	        e.printStackTrace();
 	    }
-		return inputStream.toString();  
-	}
-	public static void main(String args[]) throws IOException{
-		NetworkConnector n = new NetworkConnector();
-		n.receive();
+		return command;  
 	}
 	
 }

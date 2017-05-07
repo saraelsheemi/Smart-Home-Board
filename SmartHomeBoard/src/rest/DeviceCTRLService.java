@@ -38,8 +38,8 @@ public class DeviceCTRLService {
 		System.out.println("recived JSON object in body: "+message);
 		DeviceCTRL ctrl = new DeviceCTRL(device);
 		try{
-		ctrl.registerDevice();
-		return "device regesterd succesfully";
+			ctrl.registerDevice();
+			return "device regesterd succesfully";
 		}catch(Exception e){
 			return e.getMessage(); 
 		}
@@ -63,7 +63,7 @@ public class DeviceCTRLService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/sendCommand")
-	public static String sendCommand(String message) throws UnknownHostException, SQLException, IOException, ParseException {
+	public static String sendCommand(String message) throws UnknownHostException, SQLException, IOException, ParseException, ClassNotFoundException {
 		//send command to a certain device with open port number
 		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
@@ -126,7 +126,7 @@ public class DeviceCTRLService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getStatus/{id}")
-	public static String getStatus(@PathParam("id") String id) throws UnknownHostException, SQLException, IOException {
+	public static String getStatus(@PathParam("id") String id) throws UnknownHostException, SQLException, IOException, ClassNotFoundException {
 		JSONObject response = new JSONObject();
 		String status;
 		device = new Device();

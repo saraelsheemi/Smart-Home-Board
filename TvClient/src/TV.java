@@ -1,5 +1,8 @@
 package src;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 /**
  * 
  */
@@ -11,25 +14,29 @@ package src;
 public class TV {
 	private final String ip = "localhost";
 	private final int port = 6678;
+
 	/**
 	 * @param args
+	 * @throws IOException
+	 * @throws UnknownHostException
+	 * @throws ClassNotFoundException 
 	 */
-	public static void main(String[] args) {	
+	public TV(){}
+	public static void main(String[] args) throws UnknownHostException,
+			IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		Registeration r = new Registeration();
-		try{
-			r.register();
-			NetworkConnector n = new NetworkConnector();
-			System.out.println(n.receive());
+		System.out.println(r.register());
+		NetworkConnector n = new NetworkConnector();
+			String message = n.receive();
+			System.out.println("recevied command: " + message);
 			n.send("ack");
-		}catch(Exception e){
-			e.getMessage();
-		}
-		System.out.println("end of a tv program");
 	}
+
 	public String getIp() {
 		return ip;
 	}
+
 	public int getPort() {
 		return port;
 	}

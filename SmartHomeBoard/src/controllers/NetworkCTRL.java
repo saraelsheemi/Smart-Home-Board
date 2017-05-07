@@ -1,15 +1,15 @@
 package controllers;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class NetworkCTRL {
 	private Socket socket ;
-	private DataInputStream inputStream;
-	private DataOutputStream outputStream;
+	private ObjectInputStream inputStream;
+	private ObjectOutputStream outputStream;
 	//String command;
 	int port;
 	
@@ -17,21 +17,17 @@ public class NetworkCTRL {
 		this.port= port;
 	}
 	public void sendData(String data) throws UnknownHostException, IOException{
-		socket = new Socket("localhost", port);
-		outputStream = new DataOutputStream(socket.getOutputStream());
-		outputStream.writeBytes(data);
+		socket = new Socket("127.0.0.1", port);
+		outputStream = new ObjectOutputStream(socket.getOutputStream());
+		outputStream.writeObject(data);
+		System.out.println("message sent: "+ data);
+		//outputStream.writeBytes(data);
 	}
-	public String receieveData() throws UnknownHostException, IOException{
-		socket = new Socket("localhost", port);
-		inputStream = new DataInputStream(socket.getInputStream());
-		String ack = inputStream.readUTF();
+	public String receieveData() throws UnknownHostException, IOException, ClassNotFoundException{
+		inputStream = new ObjectInputStream(socket.getInputStream());
+		String ack = (String) inputStream.readObject();
 		System.out.println(ack);
 		return ack;
-	}
-	public static void main(String args[]) throws IOException, InterruptedException{
-		NetworkCTRL c = new NetworkCTRL(6678);
-		c.sendData("turn on");
-		c.wait();
 	}
 
 }
