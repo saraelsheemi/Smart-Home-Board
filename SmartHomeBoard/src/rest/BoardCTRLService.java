@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -61,21 +62,16 @@ public class BoardCTRLService {
 		System.out.println("message: "+ messageobj.toJSONString());
 		board = new Board();
 		board.setOwnerId(Integer.valueOf(messageobj.get("userID").toString()));
-		JSONObject response = new JSONObject();
-		ArrayList<Board> boards = new ArrayList<Board>();
+		JSONArray boards = new JSONArray();
+		ArrayList<JSONObject> boardArray = new JSONArray();
 		BoardCTRL ctrl = new BoardCTRL(board);
-		System.out.println("before try block");
 		try{
-			System.out.println("inside try block");
-			boards = ctrl.getuserBoardsInfo();
-			System.out.println(boards.toString());
-			response.put("count", boards.size());
-			int size = boards.size();
-			for(int i = 0; i<size; i++){
-				response.put("board"+i+"Name", boards.get(i).getName());
-				response.put("board"+i+"ID", boards.get(i).getId());
+			boardArray = ctrl.getUserBoards();
+			int arraySize = boardArray.size();
+			for(int i = 0; i<arraySize; i++){
+				boards.add(boardArray.get(i));
 			}
-			return response.toJSONString();
+			return boards.toJSONString();
 		}catch(Exception e){
 			return e.getMessage();
 		}

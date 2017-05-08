@@ -2,7 +2,6 @@ package dbAccess;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import Entities.Board;
 
@@ -54,6 +53,9 @@ public class BoardQueries {
 		databaseConnection = new DatabaseConnection();
 		ResultSet resultSet = databaseConnection.executeQuery("Select max(boardID) from Board");
 		resultSet.next();
+		if(resultSet.getString(1) == null){
+			return 0;
+		}
 		return Integer.parseInt(resultSet.getString(1));		
 
 	}

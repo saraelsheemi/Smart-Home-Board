@@ -41,6 +41,13 @@ public class DeviceQueries {
 		ResultSet result = databaseConnection.executeQuery("select * from Sensor where deviceID = "+String.valueOf(device.getId()));
 		return result;
 	}
+	public ResultSet getBoardDevices() throws SQLException {
+		// TODO Auto-generated method stub
+		databaseConnection = new DatabaseConnection();
+		ResultSet result = databaseConnection.executeQuery("select * from Sensor where BoardID = "+String.valueOf(device.getBoardID()));
+		System.out.println("query: select * from Sensor where BoardID = "+String.valueOf(device.getBoardID()));
+		return result;
+	}
 	public int getLastID() throws SQLException{
 		databaseConnection = new DatabaseConnection();
 		System.out.println("obtaining device new ID......");
@@ -53,12 +60,5 @@ public class DeviceQueries {
 		System.out.println("new device ID is: "+resultSet.getString(1));
 		return Integer.parseInt(resultSet.getString(1));		
 
-	}
-	public ResultSet getBoardDevices() throws SQLException {
-		// TODO Auto-generated method stub
-		databaseConnection = new DatabaseConnection();
-		ResultSet result = databaseConnection.executeQuery("select * from Sensor where BoardID = "+String.valueOf(device.getBoardID()));
-		System.out.println("query: select * from Sensor where BoardID = "+String.valueOf(device.getBoardID()));
-		return result;
 	}
 }

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Entities.Device;
@@ -86,7 +85,7 @@ public class DeviceCTRL {
 		while(result.next()){
 			temp.put("deviceName", result.getString("deviceName"));
 			temp.put("deviceID", result.getString("deviceID"));
-			temp.put("portNumber", result.getString("porNumber"));
+			temp.put("portNumber", result.getString("portNumber"));
 			temp.put("boardID", result.getString("boardID"));
 			temp.put("serialNumber", result.getString("serialNumber"));
 			devices.add(temp);

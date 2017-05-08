@@ -81,6 +81,9 @@ public class UserQueries {
 		databaseConnection = new DatabaseConnection();
 		ResultSet resultSet = databaseConnection.executeQuery("Select max(userID) from User");
 		resultSet.next();
+		if(resultSet.getString(1) == null){
+			return 0;
+		}
 		return Integer.parseInt(resultSet.getString(1));
 
 	}
