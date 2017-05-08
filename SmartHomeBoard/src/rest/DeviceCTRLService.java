@@ -157,10 +157,6 @@ public class DeviceCTRLService {
 		for(int i = 0; i<arraySize; i++){
 			devices.add(deviceArray.get(i));
 		}
-		if(arraySize == 0){
-			return "no devices in this board";
-		}else{
-			return devices.toJSONString();
-		}
+		return devices.toJSONString();
 	}
 }

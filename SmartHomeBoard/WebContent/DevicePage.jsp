@@ -21,8 +21,8 @@ Entities.User"%>
 <%	
 	//loading the devices of the boards
 	JSONObject body = new JSONObject();
-	String boardID = request.getParameter("boardID").toString();
-	body.put("boardID", boardID);
+	String boardID = request.getParameter("deviceID").toString();
+	body.put("deviceID", boardID);
 	System.out.println(body.toJSONString());
 	ClientConfig config1 = new ClientConfig();
 
@@ -31,7 +31,7 @@ Entities.User"%>
 	WebTarget target = client
 			.target(UriBuilder
 					.fromUri(
-							"http://localhost:8080/SmartHomeBoard/service/device/getBoardDevices")
+							"http://localhost:8080/SmartHomeBoard/service/device/getInfo")
 					.build());
 	Object obj = target
 			.request()
@@ -39,7 +39,7 @@ Entities.User"%>
 			.post(Entity.entity(body.toJSONString(),
 					MediaType.APPLICATION_JSON), String.class);
 	JSONParser parser = new JSONParser();
-	JSONArray devices = (JSONArray) parser.parse(obj.toString());
+	JSONObject device = (JSONObject) parser.parse(obj.toString());
 %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -107,18 +107,15 @@ Entities.User"%>
 
 			<div>
 				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<%
-						int size = devices.size();
-						for (int i = 0; i < size; i++) {
-						JSONObject device = (JSONObject) devices.get(i);
-					%>
-					<li role="presentation" class="active">
-					<a href=<%= "\"DevicePage.jsp?deviceID="+device.get("deviceID").toString()+"\""%> id=<%= device.get("deviceID").toString()%>  style="background: #618793; width: 200px; height: 210px; margin: 10px; border: medium none; display: block; float: left; outline: medium none; padding: 8px 16px"> <%=device.get("deviceName").toString()%></a></li>
-					<%
-						}
-					%>
+				<ul role="tablist">
+					<li>Device name: <%= device.get("deviceName").toString() %> </li>
+					<li>Device ID: <%= device.get("deviceID").toString() %> </li>
+					<li>Serial Number: <%= device.get("serialNumber").toString() %> </li>
+					<li>IP Address: <%= device.get("IPAddress").toString() %> </li>
+					<li>Port Number: <%= device.get("portNumber").toString() %> </li>
 				</ul>
+				<a href=<%= "\"requests/sendCommand.jsp?command=turn on&deviceID="+device.get("deviceID").toString()+"\""%>><button type="button" >turn on</button></a>
+				<a href=<%= "\"requests/sendCommand.jsp?command=turn off&deviceID="+device.get("deviceID").toString()+"\""%>><button type="button" >turn off</button></a> 
 			</div>
 		</div>
 	</div>
