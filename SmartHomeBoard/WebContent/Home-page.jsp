@@ -35,14 +35,14 @@
         </div>
         
         <%  
-       	  /*if(request.getSession(false) == null){
+       	  if(request.getSession(false) == null){
         	}else{
-        		if (!session.getAttribute("username").equals("null")) {
-              		String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";
-            		response.sendRedirect(redirectURL);
+        		if(request.getAttribute("username") != null){
+        			String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";
+        			response.sendRedirect(redirectURL);
         		}
         	}
-       	 */
+       	 
 			%>        
          <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">

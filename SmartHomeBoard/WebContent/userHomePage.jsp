@@ -41,7 +41,7 @@ import="Entities.User"
          <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="Home-page.jsp">Home</a></li>
-            <li><a href="tabs.html">Tabs Menu</a></li>
+            <li><a href="boards.jsp">Boards</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="#">Contact</a></li>
             <li class="dropdown">
@@ -63,17 +63,13 @@ import="Entities.User"
       <div class="container">
         <div class="row">
           <div class ="col-md-6">
-          	<% if (session.getAttribute("username").equals("null")) { 
+          	<% if (session.getAttribute("username") == null) { 
           		String redirectURL = "http://localhost:8080/SmartHomeBoard";
         		response.sendRedirect(redirectURL);
 			%>          
 					<% } else { %>
-    					<h1> Hello <span class="word"> </span>  <%= session.getAttribute("username")
-    					
-    																					
-    					
-    					%></h1>
-    						<p><a class="btn btn-primary btn-lg id="button" href ="requests/signoutHandler.jsp" role ="button"> Sign out  </a></p>
+    					<h1> Hello <span class="word"> </span>  <%= session.getAttribute("username")%></h1>
+    					<p><a class="btn btn-primary btn-lg id="button" href ="requests/signoutHandler.jsp" role ="button"> Sign out  </a></p>
 						<% } %>
             </div>
             </div>

@@ -31,10 +31,10 @@ public class BoardCTRL {
 		while(result.next()){
 			ids.add(Integer.valueOf(result.getString("boardID")));
 		}
-		System.out.println("the user has boards with ids: "+ids.toString());
-		JSONObject temp = new JSONObject(); 
+		System.out.println("the user has boards with ids: "+ids.toString()); 
 		int boardCount = ids.size();
 		for(int i=0; i<boardCount; i++){
+			JSONObject temp = new JSONObject();
 			result = query.getboardInfo(ids.get(i));
 			result.next();
 			temp.put("boardName",result.getString("boardName").toString());
