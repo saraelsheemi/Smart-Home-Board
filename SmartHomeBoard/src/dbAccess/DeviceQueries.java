@@ -14,7 +14,7 @@ public class DeviceQueries {
 	}
 	public void registerDevice() throws SQLException{
 		String statement="insert into Sensor values ('"+ device.getName().toString() +"',"+ String.valueOf(this.getLastID()+1)+",'"+
-		String.valueOf(device.getSerialNumber())+"','"+String.valueOf(device.getPortNumber())+"','20393933X','Type',true,true,true,233)";
+		String.valueOf(device.getSerialNumber())+"','"+String.valueOf(device.getPortNumber())+"','127.0.0.1','electronics',true,true,true,233)";
 		System.out.println("sql statment: "+statement);
 		databaseConnection.executeUpdate(statement);
 		System.out.println("query executed");

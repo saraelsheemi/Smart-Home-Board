@@ -17,8 +17,7 @@ public class DeviceCTRL {
 	}
 	public void registerDevice() throws SQLException{
 		 DeviceQueries query = new DeviceQueries(device);
-		 ResultSet result = null;
-		 result = query.checkExistance();
+		 ResultSet result = query.checkExistance();
 		 System.out.println("result"+result.toString());
 		 if(!result.next()){
 			 query.registerDevice();
@@ -43,6 +42,7 @@ public class DeviceCTRL {
 		network = new NetworkCTRL(portNumber);
 		network.sendData(command);
 		ack = network.receieveData();
+		network.clean();
 		return ack;
 	}
 	public void enableNotification(){}

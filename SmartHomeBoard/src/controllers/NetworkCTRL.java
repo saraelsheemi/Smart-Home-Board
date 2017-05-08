@@ -29,5 +29,9 @@ public class NetworkCTRL {
 		System.out.println(ack);
 		return ack;
 	}
-
+	public void clean() throws IOException{
+		socket.close();
+		outputStream.close();
+		inputStream.close();
+	}
 }

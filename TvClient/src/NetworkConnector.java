@@ -37,5 +37,11 @@ public class NetworkConnector {
 	    }
 		return command;  
 	}
+	public void clean() throws IOException{
+		socket.close();
+		serverSocket.close();
+		outputStream.close();
+		inputStream.close();
+	}
 	
 }

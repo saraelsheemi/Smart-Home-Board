@@ -16,8 +16,8 @@ public class Registeration {
 	public String register() {
 		TV tv = new TV();
 		JSONObject body = new JSONObject();
-		body.put("deviceName", "TV");
-		body.put("serialNumber", "125");
+		body.put("deviceName", tv.getDeviceName());
+		body.put("serialNumber", tv.getSerialNumber());
 		body.put("portNumber", String.valueOf(tv.getPort()));
 		System.out.println(body.toString());
 		ClientConfig config1 = new ClientConfig();
