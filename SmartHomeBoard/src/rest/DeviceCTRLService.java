@@ -3,6 +3,7 @@ package rest;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -38,8 +40,8 @@ public class DeviceCTRLService {
 		System.out.println("recived JSON object in body: "+message);
 		DeviceCTRL ctrl = new DeviceCTRL(device);
 		try{
-			ctrl.registerDevice();
-			return "device regesterd succesfully";
+			String response = ctrl.registerDevice();
+			return response;
 		}catch(Exception e){
 			return e.getMessage(); 
 		}
@@ -136,5 +138,29 @@ public class DeviceCTRLService {
 		response.put("status", status);
 		return response.toJSONString();
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getBoardDevices")
+	public static String getBoardDevices(String message) throws SQLException, ParseException{
+		JSONParser parser = new JSONParser();
+		JSONObject messageobj = (JSONObject) parser.parse(message);
+		System.out.println("message: "+messageobj.toJSONString());
+		JSONArray devices = new JSONArray();
+		ArrayList<JSONObject> deviceArray = new ArrayList<JSONObject>();
+		device = new Device();
+		device.setBoardID(Integer.valueOf(messageobj.get("boardID").toString()));
+		DeviceCTRL c = new DeviceCTRL(device);
+		deviceArray = c.getBoardDevices();
+		int arraySize = deviceArray.size();
+		for(int i = 0; i<arraySize; i++){
+			devices.add(deviceArray.get(i));
+		}
+		if(arraySize == 0){
+			return "no devices in this board";
+		}else{
+			return devices.toJSONString();
+		}
+	}
 }

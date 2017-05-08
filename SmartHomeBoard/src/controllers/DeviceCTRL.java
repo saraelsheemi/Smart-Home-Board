@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import Entities.Device;
 import dbAccess.DeviceQueries;
@@ -15,14 +19,17 @@ public class DeviceCTRL {
 	public DeviceCTRL(Device device) {
 		this.device = device;
 	}
-	public void registerDevice() throws SQLException{
+	public String registerDevice() throws SQLException{
 		 DeviceQueries query = new DeviceQueries(device);
 		 ResultSet result = query.checkExistance();
 		 System.out.println("result"+result.toString());
-		 if(!result.next()){
-			 query.registerDevice();
+		 if(result.next()){
+			 return "device already registerd";
 		 }else{
-			 System.out.println("device already registerd");
+			 System.out.println("inside register branch");
+			 query.registerDevice();
+			 System.out.println("device registered successfully");
+			 return "device registerd successfully";
 		 }
 	 }
 	public void removeDevice(){
@@ -69,6 +76,23 @@ public class DeviceCTRL {
 		network.sendData("getStatus");
 		return network.receieveData();
 	}  
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<JSONObject> getBoardDevices() throws SQLException{
+		DeviceQueries query = new DeviceQueries(device);
+		ResultSet result = query.getBoardDevices();
+		ArrayList<JSONObject> devices = new ArrayList<JSONObject>();
+		JSONObject temp = new JSONObject();
+		while(result.next()){
+			temp.put("deviceName", result.getString("deviceName"));
+			temp.put("deviceID", result.getString("deviceID"));
+			temp.put("portNumber", result.getString("porNumber"));
+			temp.put("boardID", result.getString("boardID"));
+			temp.put("serialNumber", result.getString("serialNumber"));
+			devices.add(temp);
+		}
+		return devices;
+	}
 	 
 	 
 }
