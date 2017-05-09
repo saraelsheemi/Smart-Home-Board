@@ -27,7 +27,7 @@ import="Entities.User"
     <![endif]-->
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -42,36 +42,38 @@ import="Entities.User"
           <ul class="nav navbar-nav">
             <li class="active"><a href="Home-page.jsp">Home</a></li>
             <li><a href="boards.jsp">Boards</a></li>
-            <li><a href="about.html">About</a></li>
             <li><a href="#">Contact</a></li>
-            <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Add New Device </a></li>
-            <li><a href="#">check status</a></li>
-            <li><a href="#">Edit profile information</a></li>
-            <li role="separator" class="divider"></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="requests/signoutHandler.jsp">Log out</a></li>
           </ul>
-        </li>
-          </ul>
-          
-        </div><!--/.navbar-collapse -->
+		</div><!--/.navbar-collapse -->
       </div>
     </nav>
     <div class="jumbotron">
       <div class="container">
         <div class="row">
           <div class ="col-md-6">
-          	<% if (session.getAttribute("username") == null) { 
-          		String redirectURL = "http://localhost:8080/SmartHomeBoard";
-        		response.sendRedirect(redirectURL);
-			%>          
-					<% } else { %>
-    					<h1> Hello <span class="word"> </span>  <%= session.getAttribute("username")%></h1>
-    					<p><a class="btn btn-primary btn-lg id="button" href ="requests/signoutHandler.jsp" role ="button"> Sign out  </a></p>
-						<% } %>
-            </div>
+					<%
+						String username = String.valueOf(session.getAttribute("username"));
+						if (username.equals("null")) {
+							String redirectURL = "http://localhost:8080/SmartHomeBoard";
+							response.sendRedirect(redirectURL);
+					%>
+					<%
+						} else {
+					%>
+					<h1>
+						Hello <span class="word"> </span>
+						<%=session.getAttribute("username")%></h1>
+					<p>
+						<a class="btn btn-primary btn-lg id="
+							button" href="requests/signoutHandler.jsp" role="button">
+							Sign out </a>
+					</p>
+					<%
+		}
+	%>
+				</div>
             </div>
             </div>
             </div>

@@ -68,35 +68,16 @@ Entities.User"%>
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Smart Home Board</a>
+				<a class="navbar-brand" href="userHomePage.jsp">Smart Home Board</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="Home-page.jsp">Home</a></li>
-					<li><a href="#contact">tabs Menu</a></li>
-					<li><a href="about.html">About</a></li>
+					<li class="active"><a href="userHomePage.jsp">Home</a></li>
+					<li><a href="boards.jsp">Boards</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="requests/signoutHandler.jsp">Log out</a></li>
 				</ul>
-				<form class="navbar-form navbar-right">
-					<div class="form-group">
-						<input type="text" placeholder="Email" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="password" placeholder="Password" class="form-control">
-					</div>
-					<button type="submit" class="btn btn-success">Sign in</button>
-				</form>
 			</div>
 			<!--/.navbar-collapse -->
 		</div>

@@ -3,6 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%
+	if (request.getSession(false) == null) {
+	} else {
+		String username = String.valueOf(session.getAttribute("username"));
+		if (!username.equals("null")) {
+			String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";
+			response.sendRedirect(redirectURL);
+		}
+	}
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,18 +42,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">Smart Home Board</a>
-        </div>
-        
-        <%  
-       	  if(request.getSession(false) == null){
-        	}else{
-        		if(request.getAttribute("username") != null){
-        			String redirectURL = "http://localhost:8080/SmartHomeBoard/userHomePage.jsp";
-        			response.sendRedirect(redirectURL);
-        		}
-        	}
-       	 
-			%>        
+        </div>       
          <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
          
