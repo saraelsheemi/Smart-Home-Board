@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.glassfish.jersey.server.spi.ResponseErrorMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -67,6 +68,7 @@ public class DeviceCTRLService {
 	@Path("/sendCommand")
 	public static String sendCommand(String message) throws UnknownHostException, SQLException, IOException, ParseException, ClassNotFoundException {
 		//send command to a certain device with open port number
+		try{
 		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject)parser.parse(message);
@@ -78,7 +80,9 @@ public class DeviceCTRLService {
 		ack = control.sendCommand(messageobj.get("command").toString());
 		response.put("ack", ack);
 		return response.toJSONString();
-		
+		}catch(Exception e){
+			return "N/A";
+		}
 	}
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -129,6 +133,7 @@ public class DeviceCTRLService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getStatus")
 	public static String getStatus(String message) throws UnknownHostException, SQLException, IOException, ClassNotFoundException, ParseException {
+		try{
 		System.out.println("message: " +message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject)parser.parse(message);
@@ -141,6 +146,11 @@ public class DeviceCTRLService {
 		status = control.getStatus();
 		response.put("status", status);
 		return response.toJSONString();
+		}catch(Exception e){
+			JSONObject response = new JSONObject();
+			response.put("status", "N/A");
+			return response.toJSONString();
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

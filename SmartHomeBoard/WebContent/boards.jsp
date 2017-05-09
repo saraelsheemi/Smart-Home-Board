@@ -37,8 +37,15 @@ Entities.User"%>
 			.accept(MediaType.APPLICATION_JSON)
 			.post(Entity.entity(body.toJSONString(),
 					MediaType.APPLICATION_JSON), String.class);
-	JSONParser parser = new JSONParser();
-	JSONArray boards = (JSONArray) parser.parse(obj.toString());
+	JSONArray boards;
+	try{
+		JSONParser parser = new JSONParser();
+		boards = (JSONArray) parser.parse(obj.toString());
+	}catch(Exception e){
+		boards = new JSONArray();
+		//JSONObject board = new JSONObject();
+		//boards.add(0, board);
+	}
 %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,6 +97,9 @@ Entities.User"%>
 				<ul class="nav nav-tabs" role="tablist">
 					<%
 						int size = boards.size();
+						if(size == 0){
+							%><li> No Boards Found </li><% 
+						}else{
 						for (int i = 0; i < size; i++) {
 						JSONObject board = (JSONObject) boards.get(i);
 					%>
@@ -97,6 +107,7 @@ Entities.User"%>
 					<a href=<%= "\"Devices.jsp?boardID="+board.get("boardID").toString()+"\""%> id=<%= board.get("boardID").toString()%>  style="background: #618793; width: 200px; height: 210px; margin: 10px; border: medium none; display: block; float: left; outline: medium none; padding: 8px 16px"> <%=board.get("boardName").toString()%></a></li>
 					<%
 						}
+					}
 					%>
 				</ul>
 				<p>Need extra board?</p>

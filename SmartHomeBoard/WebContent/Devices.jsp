@@ -38,8 +38,13 @@ Entities.User"%>
 			.accept(MediaType.APPLICATION_JSON)
 			.post(Entity.entity(body.toJSONString(),
 					MediaType.APPLICATION_JSON), String.class);
-	JSONParser parser = new JSONParser();
-	JSONArray devices = (JSONArray) parser.parse(obj.toString());
+	JSONArray devices;
+	try{
+		JSONParser parser = new JSONParser();
+		devices = (JSONArray) parser.parse(obj.toString());
+	}catch(Exception e){
+		devices = new JSONArray();
+	}
 %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -91,6 +96,9 @@ Entities.User"%>
 				<ul class="nav nav-tabs" role="tablist">
 					<%
 						int size = devices.size();
+					if(size == 0){
+						%><li> No Devices Found </li><% 
+					}else{
 						for (int i = 0; i < size; i++) {
 						JSONObject device = (JSONObject) devices.get(i);
 					%>
@@ -98,6 +106,7 @@ Entities.User"%>
 					<a href=<%= "\"DevicePage.jsp?deviceID="+device.get("deviceID").toString()+"\""%> id=<%= device.get("deviceID").toString()%>  style="background: #618793; width: 200px; height: 210px; margin: 10px; border: medium none; display: block; float: left; outline: medium none; padding: 8px 16px"> <%=device.get("deviceName").toString()%></a></li>
 					<%
 						}
+					}
 					%>
 				</ul>
 			</div>
