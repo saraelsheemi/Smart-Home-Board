@@ -16,8 +16,10 @@ import controllers.UserCTRL;
 @Path("/user")
 public class UserCTRLService {
 	public static User user;
+	@SuppressWarnings("unused")
 	private Board board;
 
+	@SuppressWarnings("unchecked")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/signin")
@@ -39,18 +41,10 @@ public class UserCTRLService {
 		}
 		return responseBody.toJSONString();
 	}
-
-	public static void SignOut() {
-	}// the sign out method doesn't have anything to do with the backend
-		// it just should remove the user and his info from the session
-
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/signup")
 	public static void signUp(String message) throws ParseException {
-		System.out.println("message: " + message);
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
 		System.out.println("message: " + message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
@@ -68,19 +62,9 @@ public class UserCTRLService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/adduser")
 	public static void addUser(String message) throws ParseException {
-		
 		System.out.println("message: " + message);
-		
-		//message = message.replaceAll("^\"|\"$", "");
-		//message = message.replaceAll("\\\\", "");
-		
-		System.out.println("message: " + message);
-		
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
-		
-		//User addedUser = new User(Integer.valueOf(messageobj.get("userID").toString()));
-		
 		user = new User(Integer.valueOf(messageobj.get("userID").toString()));
 		UserCTRL ctrl = new UserCTRL(user);
 		try {
@@ -94,18 +78,9 @@ public class UserCTRLService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/removeuser")
 	public static void removeUser(String message) throws ParseException {
-		
 		System.out.println("message: " + message);
-		
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
-		
-		System.out.println("message: " + message);
-		
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
-		//User removedUser = new User (Integer.valueOf(messageobj.get("id").toString()));
-		
 		user = new User(Integer.valueOf(messageobj.get("id").toString()));
 		UserCTRL ctrl = new UserCTRL(user);
 		try {
@@ -120,12 +95,6 @@ public class UserCTRLService {
 	@Path("/deleteaccount")
 	public static void deleteAccount(String message) throws ParseException {
 		System.out.println("message: " + message);
-		
-		message = message.replaceAll("^\"|\"$", "");
-		message = message.replaceAll("\\\\", "");
-		
-		System.out.println("message: " + message);
-		
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		user = new User(Integer.valueOf(messageobj.get("id").toString()));

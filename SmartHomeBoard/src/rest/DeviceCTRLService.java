@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.glassfish.jersey.server.spi.ResponseErrorMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import Entities.Board;
 import Entities.Device;
+import controllers.BoardCTRL;
 import controllers.DeviceCTRL;
 
 @Path("/device")
@@ -47,7 +47,30 @@ public class DeviceCTRLService {
 			return e.getMessage(); 
 		}
 	}
-	
+	@SuppressWarnings("unchecked")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/newDevices")
+	public static String getNewDevices(String message) throws ParseException {
+		System.out.println("http body parsed from string to json");
+		DeviceCTRL ctrl = new DeviceCTRL();
+		ArrayList<JSONObject> devices = new ArrayList<JSONObject>();
+		JSONArray devicesArray = new JSONArray();
+		try{
+			devices = ctrl.getNewDevices();
+			int size = devices.size();
+			System.out.println(devices.toString());
+			for(int i=0;i<size; i++){
+				System.out.println(i);
+				System.out.println(devices.get(i));
+				devicesArray.add(devices.get(i));
+			}
+			return devicesArray.toJSONString();
+		}catch(Exception e){
+			//return devicesArray.toJSONString();
+			return "failed";
+		}
+	}
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/remove")
@@ -57,9 +80,20 @@ public class DeviceCTRLService {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/add")
-	public static void addDevice() {
+	@Path("/addDevice")
+	public static String addDevice(String message) throws ParseException {
 		//add device to user board 
+		JSONParser parser = new JSONParser();
+		JSONObject messageobj = (JSONObject) parser.parse(message);
+		DeviceCTRL ctrl = new DeviceCTRL();
+		try{
+			System.out.println("deviceID"+messageobj.get("deviceID").toString());
+			System.out.println("boardID"+messageobj.get("boardID").toString());
+			ctrl.addDevice(messageobj.get("deviceID").toString(),messageobj.get("boardID").toString());
+			return "device added to board";
+		}catch(Exception e){
+			return "failed";
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -168,7 +202,7 @@ public class DeviceCTRLService {
 		DeviceCTRL c = new DeviceCTRL(device);
 		deviceArray = c.getBoardDevices();
 		int arraySize = deviceArray.size();
-		for(int i = 0; i<arraySize; i++){
+		for(int i=0;i<arraySize; i++){
 			devices.add(deviceArray.get(i));
 		}
 		return devices.toJSONString();

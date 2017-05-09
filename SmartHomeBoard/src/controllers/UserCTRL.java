@@ -3,7 +3,6 @@ package controllers;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-import Entities.Board;
 import Entities.User;
 import dbAccess.UserQueries;
 

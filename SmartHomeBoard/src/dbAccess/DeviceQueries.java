@@ -13,6 +13,9 @@ public class DeviceQueries {
 		databaseConnection=new DatabaseConnection();
 		this.device = device;
 	}
+	public DeviceQueries() throws SQLException {
+		databaseConnection=new DatabaseConnection();
+	}
 	public void registerDevice() throws SQLException{
 		System.out.println("inside register device query");
 		//System.out.println("insert into Sensor values ('"+ device.getName().toString() +"','3','"+
@@ -48,6 +51,17 @@ public class DeviceQueries {
 		ResultSet result = databaseConnection.executeQuery("select * from Sensor where BoardID = "+String.valueOf(device.getBoardID()));
 		System.out.println("query: select * from Sensor where BoardID = "+String.valueOf(device.getBoardID()));
 		return result;
+	}
+	public ResultSet getNewDevices() throws SQLException {
+		// TODO Auto-generated method stub
+		databaseConnection = new DatabaseConnection();
+		ResultSet result = databaseConnection.executeQuery("select * from Sensor where BoardID IS NULL");
+		return result;
+	}
+	public void addDevice(String deviceID, String boardID) throws SQLException {
+		// TODO Auto-generated method stub
+		databaseConnection = new DatabaseConnection();
+		databaseConnection.executeUpdate("UPDATE Sensor SET boardID = "+boardID+" WHERE deviceID = "+deviceID);
 	}
 	public int getLastID() throws SQLException{
 		databaseConnection = new DatabaseConnection();

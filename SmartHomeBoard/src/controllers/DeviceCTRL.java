@@ -33,11 +33,31 @@ public class DeviceCTRL {
 			 return "device registerd successfully";
 		 }
 	 }
+	@SuppressWarnings("unchecked")
+	public ArrayList<JSONObject> getNewDevices() throws SQLException{
+		DeviceQueries query = new DeviceQueries();
+		ResultSet result = query.getNewDevices();
+		ArrayList<JSONObject> devices = new ArrayList<JSONObject>();
+		while(result.next()){
+			JSONObject temp = new JSONObject();
+			temp.put("deviceName", result.getString("deviceName"));
+			temp.put("deviceID", result.getString("deviceID"));
+			temp.put("portNumber", result.getString("portNumber"));
+			temp.put("boardID", result.getString("boardID"));
+			temp.put("serialNumber", result.getString("serialNumber"));
+			devices.add(temp);
+			System.out.println(devices.toString());
+		}
+		query.getConnection().closeConnection();
+		return devices;
+	}
 	public void removeDevice(){
 		
 	}
-	public void addDevice(){
-		
+	public void addDevice(String deviceID, String boardID) throws SQLException{
+		DeviceQueries query = new DeviceQueries();
+		query.addDevice(deviceID,boardID);
+		query.getConnection().closeConnection();
 	}
 	public String sendCommand(String command) throws SQLException, UnknownHostException, IOException, ClassNotFoundException{
 		DeviceQueries query = new DeviceQueries(device);
@@ -86,8 +106,8 @@ public class DeviceCTRL {
 		DeviceQueries query = new DeviceQueries(device);
 		ResultSet result = query.getBoardDevices();
 		ArrayList<JSONObject> devices = new ArrayList<JSONObject>();
-		JSONObject temp = new JSONObject();
 		while(result.next()){
+			JSONObject temp = new JSONObject();
 			temp.put("deviceName", result.getString("deviceName"));
 			temp.put("deviceID", result.getString("deviceID"));
 			temp.put("portNumber", result.getString("portNumber"));

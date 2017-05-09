@@ -22,7 +22,7 @@ Entities.User"%>
 	//loading the devices of the boards
 	JSONObject body = new JSONObject();
 	String boardID = request.getParameter("boardID").toString();
-	body.put("boardID", boardID);
+	body.put("", "");
 	System.out.println(body.toJSONString());
 	ClientConfig config1 = new ClientConfig();
 
@@ -31,7 +31,7 @@ Entities.User"%>
 	WebTarget target = client
 			.target(UriBuilder
 					.fromUri(
-							"http://localhost:8080/SmartHomeBoard/service/device/getBoardDevices")
+							"http://localhost:8080/SmartHomeBoard/service/device/newDevices")
 					.build());
 	Object obj = target
 			.request()
@@ -97,20 +97,20 @@ Entities.User"%>
 					<%
 						int size = devices.size();
 					if(size == 0){
-						%><li> No Devices Found </li><% 
+						%><li> No New Devices Found </li><% 
 					}else{
 						for (int i = 0; i < size; i++) {
 						JSONObject device = (JSONObject) devices.get(i);
 					%>
 					<li role="presentation" class="active">
-					<a href=<%= "\"DevicePage.jsp?deviceID="+device.get("deviceID").toString()+"\""%> id=<%= device.get("deviceID").toString()%>  style="background: #618793; width: 200px; height: 210px; margin: 10px; border: medium none; display: block; float: left; outline: medium none; padding: 8px 16px"> <%=device.get("deviceName").toString()%></a></li>
+					<a href=<%= "\"requests/addDevice.jsp?boardID="+request.getParameter("boardID").toString()+"&deviceID="%><%= device.get("deviceID").toString()+"\""%>><button type="button" >Add device</button></a>
+					<a id=<%= device.get("deviceID").toString()%> style="background: #618793; width: 200px; height: 210px; margin: 10px; border: medium none; display: block; float: left; outline: medium none; padding: 8px 16px"> <%=device.get("deviceName").toString()%></a>
+					</li>
 					<%
 						}
 					}
 					%>
 				</ul>
-				<p>Don't have devices?</p>
-				<a href=<%= "\"newDevices.jsp?boardID="+request.getParameter("boardID").toString()+"\""%>><button type="button" >Add device</button></a>
 			</div>
 		</div>
 	</div>
