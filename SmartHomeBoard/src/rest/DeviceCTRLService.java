@@ -125,15 +125,19 @@ public class DeviceCTRLService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@GET
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/getStatus/{id}")
-	public static String getStatus(@PathParam("id") String id) throws UnknownHostException, SQLException, IOException, ClassNotFoundException {
+	@Path("/getStatus")
+	public static String getStatus(String message) throws UnknownHostException, SQLException, IOException, ClassNotFoundException, ParseException {
+		System.out.println("message: " +message);
+		JSONParser parser = new JSONParser();
+		JSONObject messageobj = (JSONObject)parser.parse(message);
+		System.out.println("http body parsed from string to json");
 		JSONObject response = new JSONObject();
 		String status;
 		device = new Device();
-		device.setId(Integer.valueOf(id));
-		DeviceCTRL control = new DeviceCTRL();
+		device.setId(Integer.valueOf(messageobj.get("deviceID").toString()));
+		DeviceCTRL control = new DeviceCTRL(device);
 		status = control.getStatus();
 		response.put("status", status);
 		return response.toJSONString();

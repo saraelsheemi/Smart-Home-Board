@@ -25,7 +25,7 @@ public class BoardCTRLService {
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
 		board = new Board(messageobj.get("boardName").toString());
-		board.setOwnerId(Integer.valueOf(messageobj.get("userId").toString()));
+		board.setOwnerId(Integer.valueOf(messageobj.get("userID").toString()));
 		BoardCTRL ctrl = new BoardCTRL(board);
 		try{
 			ctrl.addBoard();

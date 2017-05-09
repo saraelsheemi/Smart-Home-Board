@@ -21,8 +21,8 @@ Entities.User"%>
 <%	
 	//loading the devices of the boards
 	JSONObject body = new JSONObject();
-	String boardID = request.getParameter("deviceID").toString();
-	body.put("deviceID", boardID);
+	String deviceID = request.getParameter("deviceID").toString();
+	body.put("deviceID", deviceID);
 	System.out.println(body.toJSONString());
 	ClientConfig config1 = new ClientConfig();
 
@@ -40,6 +40,27 @@ Entities.User"%>
 					MediaType.APPLICATION_JSON), String.class);
 	JSONParser parser = new JSONParser();
 	JSONObject device = (JSONObject) parser.parse(obj.toString());
+JSONObject body2 = new JSONObject();
+body2.put("deviceID", request.getParameter("deviceID").toString());
+ClientConfig config2 = new ClientConfig();
+
+Client client2 = ClientBuilder.newClient(config2);
+
+WebTarget target2 = client
+		.target(UriBuilder
+				.fromUri(
+						"http://localhost:8080/SmartHomeBoard/service/device/getStatus")
+				.build());
+Object obj2 = target2
+		.request()
+		.accept(MediaType.APPLICATION_JSON)
+		.post(Entity.entity(body2.toJSONString(),
+				MediaType.APPLICATION_JSON), String.class);
+System.out.println("obj2: "+obj2.toString());
+JSONParser parser2 = new JSONParser();
+JSONObject statusobj = (JSONObject) parser2.parse(obj2.toString());
+System.out.println("statusobject: "+statusobj.toJSONString());
+//String status = (String)response1.get("status").toString();
 %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -108,11 +129,12 @@ Entities.User"%>
 			<div>
 				<!-- Nav tabs -->
 				<ul role="tablist">
-					<li>Device name: <%= device.get("deviceName").toString() %> </li>
+					<li>Device Name: <%= device.get("deviceName").toString() %> </li>
 					<li>Device ID: <%= device.get("deviceID").toString() %> </li>
 					<li>Serial Number: <%= device.get("serialNumber").toString() %> </li>
 					<li>IP Address: <%= device.get("IPAddress").toString() %> </li>
 					<li>Port Number: <%= device.get("portNumber").toString() %> </li>
+					<li>Device Status: <%= statusobj.get("status").toString() %> </li>
 				</ul>
 				<a href=<%= "\"requests/sendCommand.jsp?command=turn on&deviceID="+device.get("deviceID").toString()+"\""%>><button type="button" >turn on</button></a>
 				<a href=<%= "\"requests/sendCommand.jsp?command=turn off&deviceID="+device.get("deviceID").toString()+"\""%>><button type="button" >turn off</button></a> 

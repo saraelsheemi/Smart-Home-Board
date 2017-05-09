@@ -17,7 +17,11 @@ public class Intrepreter {
 			tv.setStatus(false);
 			return "device turned off successfully";
 		case "getStatus":
-			return String.valueOf(tv.isStatus());
+				if(tv.isStatus()){
+					return "On";
+				}else{
+					return "off";
+				}
 		default:
 			return "unknown command";
 		}

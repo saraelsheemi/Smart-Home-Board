@@ -118,6 +118,11 @@ Entities.User"%>
 						}
 					%>
 				</ul>
+				<p>Need extra board?</p>
+				<form method="POST" action="requests/addBoard.jsp">
+  					Board Name:<br><input type="text" name="boardName"><br>
+  					<input type="submit" value="add board">
+				</form>
 			</div>
 		</div>
 	</div>
