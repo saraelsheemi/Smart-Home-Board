@@ -23,11 +23,13 @@ public class DeviceCTRL {
 		 ResultSet result = query.checkExistance();
 		 System.out.println("result"+result.toString());
 		 if(result.next()){
+			 query.getConnection().closeConnection();
 			 return "device already registerd";
 		 }else{
 			 System.out.println("inside register branch");
 			 query.registerDevice();
 			 System.out.println("device registered successfully");
+			 query.getConnection().closeConnection();
 			 return "device registerd successfully";
 		 }
 	 }
@@ -45,6 +47,7 @@ public class DeviceCTRL {
 		ResultSet result = query.getInfo();
 		result.next();
 		portNumber = Integer.valueOf(result.getString("portNumber"));
+		query.getConnection().closeConnection();
 		network = new NetworkCTRL(portNumber);
 		network.sendData(command);
 		ack = network.receieveData();
@@ -62,6 +65,7 @@ public class DeviceCTRL {
 		device.setSerialNumber(Integer.valueOf(result.getString("serialNumber")));
 		device.setIpAddress(result.getString("IPAddress"));
 		device.setPortNumber(Integer.valueOf(result.getString("portNumber")));
+		query.getConnection().closeConnection();
 		return device;
 	}
 	public String getStatus() throws SQLException, UnknownHostException, IOException, ClassNotFoundException{
@@ -71,6 +75,7 @@ public class DeviceCTRL {
 		ResultSet result = query.getInfo();
 		result.next();
 		portNumber = Integer.valueOf(result.getString("portNumber"));
+		query.getConnection().closeConnection();
 		network = new NetworkCTRL(portNumber);
 		network.sendData("getStatus");
 		return network.receieveData();
@@ -90,6 +95,7 @@ public class DeviceCTRL {
 			temp.put("serialNumber", result.getString("serialNumber"));
 			devices.add(temp);
 		}
+		query.getConnection().closeConnection();
 		return devices;
 	}
 	 

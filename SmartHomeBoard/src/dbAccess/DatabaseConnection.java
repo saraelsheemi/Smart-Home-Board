@@ -32,7 +32,6 @@ public class DatabaseConnection {
 	public ResultSet executeQuery(String sqlQuery) throws SQLException {
 		Statement statement = dbConnection.createStatement();
 		ResultSet resultSet = statement.executeQuery(sqlQuery);
-
 		return resultSet;
 
 	}
@@ -40,13 +39,14 @@ public class DatabaseConnection {
 	public void executeUpdate(String sqlQuery) throws SQLException {
 		Statement statement = dbConnection.createStatement();
 		statement.executeUpdate(sqlQuery);
-
 	}
 
 	public PreparedStatement prepareStatement(String sql) throws SQLException {
 		// dbConnection.prepareStatement(sql);
 		return dbConnection.prepareStatement(sql);
 	}
-	
+	public void closeConnection() throws SQLException{
+		dbConnection.close();
+	}
 
 }

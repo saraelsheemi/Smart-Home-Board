@@ -17,7 +17,7 @@ public class TV {
 	private final String deviceName = "Smart TV";
 	private int id;
 	private final String serialNumber = "1352865";
-	private boolean status = false;
+	private boolean status = true;
 	private static TV thisTV;
 
 	/**

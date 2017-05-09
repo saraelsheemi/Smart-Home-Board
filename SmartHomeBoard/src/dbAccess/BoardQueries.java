@@ -6,10 +6,11 @@ import java.sql.SQLException;
 import Entities.Board;
 
 public class BoardQueries {
-	private DatabaseConnection databaseConnection=new DatabaseConnection();
+	private DatabaseConnection databaseConnection;
 	private Board board;
 	public BoardQueries(Board board) throws SQLException {
 		// TODO Auto-generated constructor stub
+		databaseConnection=new DatabaseConnection();
 		this.board = board;
 	}
 	public void addBoard() throws SQLException{
@@ -57,6 +58,8 @@ public class BoardQueries {
 			return 0;
 		}
 		return Integer.parseInt(resultSet.getString(1));		
-
+	}
+	public DatabaseConnection getConnection(){
+		return databaseConnection;
 	}
 }

@@ -17,10 +17,12 @@ public class BoardCTRL {
 	public void addBoard() throws SQLException{
 		BoardQueries query = new BoardQueries(board);
 		query.addBoard();
+		query.getConnection().closeConnection();
 	}
 	public void removeBoard() throws SQLException{
 		BoardQueries query = new BoardQueries(board);
 		query.removeBoard();
+		query.getConnection().closeConnection();
 	}
 	@SuppressWarnings("unchecked")
 	public ArrayList<JSONObject> getUserBoards() throws SQLException{
@@ -41,6 +43,7 @@ public class BoardCTRL {
 			temp.put("boardID",result.getString("boardID").toString());
 			boards.add(temp);
 		}
+		query.getConnection().closeConnection();
 		System.out.println(boards.toString());
 		return boards;
 	}

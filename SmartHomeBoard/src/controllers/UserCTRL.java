@@ -22,30 +22,31 @@ public class UserCTRL {
 		result.next();
 		User u = new User(result.getInt("userID"), result.getString("userName"), result.getString("userType"),
 				result.getString("gender"), result.getString("email"), result.getString("password"));
+		query.getConnection().closeConnection();
 		return u;
 	}
-
-	public void SignOut() {
-	}
-
 	public void signUp() throws SQLException {
 		UserQueries query = new UserQueries(user);
 		query.signUp();
+		query.getConnection().closeConnection();
 	}
 
 	public void addUser(int boardID) throws SQLException {
 		UserQueries query = new UserQueries(user);
 		query.addUser(boardID);
+		query.getConnection().closeConnection();
 	}
 
 	public void removeUser(int boardID) throws SQLException {
 		UserQueries query = new UserQueries(user);
 		query.removeUser(boardID);
+		query.getConnection().closeConnection();
 	}
 
 	public void deleteAccount() throws SQLException {
 		UserQueries query = new UserQueries(user);
 		query.deleteAccount();
+		query.getConnection().closeConnection();
 	}
 
 }

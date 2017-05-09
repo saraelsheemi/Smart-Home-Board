@@ -6,10 +6,11 @@ import java.sql.SQLException;
 import Entities.Device;
 import dbAccess.DatabaseConnection; 
 public class DeviceQueries {
-	private DatabaseConnection databaseConnection=new DatabaseConnection();
+	private DatabaseConnection databaseConnection;
 	private Device device;
 	
 	public DeviceQueries(Device device) throws SQLException {
+		databaseConnection=new DatabaseConnection();
 		this.device = device;
 	}
 	public void registerDevice() throws SQLException{
@@ -60,5 +61,8 @@ public class DeviceQueries {
 		System.out.println("new device ID is: "+resultSet.getString(1));
 		return Integer.parseInt(resultSet.getString(1));		
 
+	}
+	public DatabaseConnection getConnection(){
+		return databaseConnection;
 	}
 }

@@ -8,13 +8,14 @@ import Entities.User;
 
 public class UserQueries {
 
-	private DatabaseConnection databaseConnection = new DatabaseConnection();
+	private DatabaseConnection databaseConnection;
 	private User user;
 	private int id;
 	private Board board;
 
 	public UserQueries(User user) throws SQLException {
 		// TODO Auto-generated constructor stub
+		databaseConnection = new DatabaseConnection();
 		this.user = user;
 	}
 	
@@ -86,5 +87,8 @@ public class UserQueries {
 		}
 		return Integer.parseInt(resultSet.getString(1));
 
+	}
+	public DatabaseConnection getConnection(){
+		return databaseConnection;
 	}
 }
