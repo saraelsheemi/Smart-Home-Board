@@ -51,8 +51,10 @@ public class DeviceCTRL {
 		query.getConnection().closeConnection();
 		return devices;
 	}
-	public void removeDevice(){
-		
+	public void removeDevice() throws SQLException{
+		DeviceQueries query = new DeviceQueries(device);
+		query.removeDevice();
+		query.getConnection().closeConnection();
 	}
 	public void addDevice(String deviceID, String boardID) throws SQLException{
 		DeviceQueries query = new DeviceQueries();
@@ -85,6 +87,7 @@ public class DeviceCTRL {
 		device.setSerialNumber(Integer.valueOf(result.getString("serialNumber")));
 		device.setIpAddress(result.getString("IPAddress"));
 		device.setPortNumber(Integer.valueOf(result.getString("portNumber")));
+		device.setBoardID(Integer.valueOf(result.getString("boardID").toString()));
 		query.getConnection().closeConnection();
 		return device;
 	}

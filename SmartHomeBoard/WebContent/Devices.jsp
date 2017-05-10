@@ -111,6 +111,7 @@ Entities.User"%>
 				</ul>
 				<p>Don't have devices?</p>
 				<a href=<%= "\"newDevices.jsp?boardID="+request.getParameter("boardID").toString()+"\""%>><button type="button" >Add device</button></a>
+				
 			</div>
 		</div>
 	</div>

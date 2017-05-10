@@ -73,9 +73,19 @@ public class DeviceCTRLService {
 	}
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/remove")
-	public static void removeDevice() {
-		//remove device from database 
+	@Path("/removeDevice")
+	public static String removeDevice(String message) throws ParseException {
+		//remove device from database
+		JSONParser parser = new JSONParser();
+		JSONObject messageobj = (JSONObject) parser.parse(message);
+		device.setBoardID(Integer.valueOf(messageobj.get("deviceID").toString()));
+		DeviceCTRL ctrl = new DeviceCTRL(device);
+		try{
+			ctrl.removeDevice();
+			return "success";
+		}catch(Exception e){
+			return "failed";
+		}
 	}
 	
 	@POST
@@ -159,6 +169,7 @@ public class DeviceCTRLService {
 		response.put("portNumber", device.getPortNumber());
 		response.put("IPAddress", device.getIpAddress());
 		response.put("serialNumber", device.getSerialNumber());
+		response.put("boardID", String.valueOf(device.getBoardID()));
 		return response.toJSONString();
 	}
 	

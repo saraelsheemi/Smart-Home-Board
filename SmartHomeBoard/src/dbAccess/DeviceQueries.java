@@ -63,6 +63,11 @@ public class DeviceQueries {
 		databaseConnection = new DatabaseConnection();
 		databaseConnection.executeUpdate("UPDATE Sensor SET boardID = "+boardID+" WHERE deviceID = "+deviceID);
 	}
+	public void removeDevice() throws SQLException {
+		// TODO Auto-generated method stub
+		databaseConnection = new DatabaseConnection();
+		databaseConnection.executeUpdate("UPDATE Sensor SET boardID = NULL WHERE deviceID = "+String.valueOf(device.getId()));
+	}
 	public int getLastID() throws SQLException{
 		databaseConnection = new DatabaseConnection();
 		System.out.println("obtaining device new ID......");

@@ -119,6 +119,7 @@ System.out.println("statusobject: "+statusobj.toJSONString());
 				</ul>
 				<a href=<%= "\"requests/sendCommand.jsp?command=turn on&deviceID="+device.get("deviceID").toString()+"\""%>><button type="button" >turn on</button></a>
 				<a href=<%= "\"requests/sendCommand.jsp?command=turn off&deviceID="+device.get("deviceID").toString()+"\""%>><button type="button" >turn off</button></a> 
+				<a href=<%= "\"requests/removeDevice.jsp?boardID="+device.get("boardID").toString()+"&deviceID="%><%= device.get("deviceID").toString()+"\""%>><button type="button" >Remove This device</button></a>			
 			</div>
 		</div>
 	</div>
