@@ -111,6 +111,8 @@ Entities.User"%>
 				</ul>
 				<p>Don't have devices?</p>
 				<a href=<%= "\"newDevices.jsp?boardID="+request.getParameter("boardID").toString()+"\""%>><button type="button" >Add device</button></a>
+				<p>Delete the board?</p>
+				<a href=<%= "\"requests/deleteBoard.jsp?boardID="+request.getParameter("boardID").toString()+"\""%>><button type="button" >Delete board</button></a>
 				
 			</div>
 		</div>

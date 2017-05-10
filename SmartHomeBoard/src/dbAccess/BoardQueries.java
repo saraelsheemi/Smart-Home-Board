@@ -28,9 +28,18 @@ public class BoardQueries {
 
 	}
 	public void removeBoard() throws SQLException{
+		//unlink board and user
 		String statement="delete from userBoard where boardID = " + String.valueOf(board.getId());
 		databaseConnection.executeUpdate(statement);
 		System.out.println(statement);
+		//unlink board and devices
+		ResultSet result = databaseConnection.executeQuery("select * from Sensor where boardID = "+String.valueOf(board.getId()));
+		while (result.next()){
+			statement="UPDATE Sensor SET boardID = NULL WHERE deviceID = "+String.valueOf(result.getString("deviceID"));
+			databaseConnection.executeUpdate(statement);
+			System.out.println(statement);
+		}
+		//delete the board from database
 		databaseConnection = new DatabaseConnection();
 		statement="delete from Board where boardID = " + String.valueOf(board.getId());
 		databaseConnection.executeUpdate(statement);
