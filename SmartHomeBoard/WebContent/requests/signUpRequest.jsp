@@ -14,6 +14,7 @@ org.json.simple.parser.*,org.json.simple.JSONObject,
 org.json.simple.parser.JSONParser,
 org.json.simple.parser.ParseException,
 javax.persistence.*,
+security.AESencrp,
 javax.ws.rs.client.Entity"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,6 +33,7 @@ javax.ws.rs.client.Entity"%>
 		body.put("name", name);
 		body.put("gender", gender);
 		body.put("email", email);
+		password = AESencrp.encrypt(password);
 		body.put("password", password);
 		System.out.println(body.toJSONString());
 		ClientConfig config1 = new ClientConfig();

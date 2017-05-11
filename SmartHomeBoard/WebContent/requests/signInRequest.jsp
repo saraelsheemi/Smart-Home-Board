@@ -1,3 +1,4 @@
+<%@page import="security.AESencrp"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page
@@ -31,6 +32,7 @@ Entities.User"
 
 		JSONObject body = new JSONObject();
 		body.put("email", email);
+		password = AESencrp.encrypt(password);
 		body.put("password", password);
 		System.out.println(body.toJSONString());
 		ClientConfig config1 = new ClientConfig();
@@ -50,14 +52,6 @@ Entities.User"
 		JSONParser parser = new JSONParser();
 		JSONObject userobj = (JSONObject) parser.parse(obj.toString());
 		System.out.println("userdata: "+userobj.toJSONString());
-	/*
-		if(userobj==null){
-
-			 <script> alert('Welcome ')</script>
-		}
-	
-		String email = userobj.get("email").toString();
-*/
 		if(userobj.get("userName") != "null"){
 			session.setAttribute( "username", userobj.get("userName").toString());
 			session.setAttribute( "userId", userobj.get("userID").toString());

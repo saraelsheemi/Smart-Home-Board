@@ -95,7 +95,7 @@ Entities.User"%>
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 					<%
-						int size = devices.size();
+					int size = devices.size();
 					if(size == 0){
 						%><li> No Devices Found </li><% 
 					}else{

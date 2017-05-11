@@ -9,25 +9,24 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import Entities.Board;
+import security.AESencrp;
 import Entities.User;
 import controllers.UserCTRL;
 
 @Path("/user")
 public class UserCTRLService {
 	public static User user;
-	@SuppressWarnings("unused")
-	private Board board;
 
 	@SuppressWarnings("unchecked")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/signin")
-	public static String signIn(String message) throws ParseException {
+	public static String signIn(String message) throws Exception {
 		System.out.println("message: " + message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
-		user = new User(messageobj.get("email").toString(), messageobj.get("password").toString());
+		String password = AESencrp.decrypt(messageobj.get("password").toString());
+		user = new User(messageobj.get("email").toString(), password);
 		UserCTRL ctrl = new UserCTRL(user);
 		JSONObject responseBody = new JSONObject();
 		try {
@@ -44,12 +43,13 @@ public class UserCTRLService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/signup")
-	public static void signUp(String message) throws ParseException {
+	public static void signUp(String message) throws Exception {
 		System.out.println("message: " + message);
 		JSONParser parser = new JSONParser();
 		JSONObject messageobj = (JSONObject) parser.parse(message);
+		String password = AESencrp.decrypt(messageobj.get("password").toString());
 		user = new User(messageobj.get("name").toString(), "admin", messageobj.get("gender").toString(),
-				messageobj.get("email").toString(), messageobj.get("password").toString());
+				messageobj.get("email").toString(), password);
 		UserCTRL ctrl = new UserCTRL(user);
 		try {
 			ctrl.signUp();
