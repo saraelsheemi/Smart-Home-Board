@@ -67,7 +67,11 @@ public class TV {
 		String message;
 		String response;
 		Registeration r = new Registeration();
-		System.out.println(r.register());
+		try{
+			System.out.println(r.register());
+		}catch(Exception e){
+			System.out.println("Unable to connect to a server...");
+		}
 		NetworkConnector n = new NetworkConnector();
 		while (true) {
 			message = n.receive();
